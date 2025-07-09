@@ -15,7 +15,7 @@ const routes: { [key: string]: string } = {
   about: "/about",
   services: "/services",
   portfolio: "/jobs",
-  process: "/contact",
+  contact: "/contact",
 };
 
 export function Navbar({ scrollY }: NavbarProps) {
@@ -96,7 +96,7 @@ export function Navbar({ scrollY }: NavbarProps) {
               {Object.entries(navItems).map(([key, value]) => (
                 <a
                   key={key}
-                  href={`#${key}`}
+                  href={routes[key] || `#${key}`}
                   className="text-gray-700 hover:text-[#28bba4] transition-all duration-300 font-medium py-3 px-4 rounded-xl hover:bg-[#28bba4]/10 group"
                   onClick={() => setIsMenuOpen(false)}
                 >

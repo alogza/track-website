@@ -4,26 +4,25 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Camera, Mic, Film, Radio, Palette, Play } from "lucide-react";
 
-interface HeroSectionsProps {
+interface HeaderPageProps {
   title: string;
   description: string;
   image: string;
 }
 
-export default function HeroSections({
-  title = "Creative Media Solutions",
+export default function HeaderPage({
+  title = "Our Services",
   description = "Professional event coverage, audio production, and visual storytelling that brings your vision to life.",
   image = "/placeholder.svg?height=600&width=800",
-}: HeroSectionsProps) {
+}: HeaderPageProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [waveHeights, setWaveHeights] = useState<number[]>([]);
 
   useEffect(() => {
     setIsVisible(true);
 
-const generateHeights = () =>
-  Array.from({ length: 150 }, () => Math.floor(Math.random() * 30 + 10));
-
+    const generateHeights = () =>
+      Array.from({ length: 150 }, () => Math.floor(Math.random() * 30 + 10));
 
     setWaveHeights(generateHeights());
 
@@ -92,29 +91,25 @@ const generateHeights = () =>
             }`}
           >
             <h1
-              className={`text-4xl sm:text-5xl lg:text-7xl font-bold text-white leading-tight transition-all duration-1000 delay-200 ${
+              className={`text-4xl sm:text-5xl font-extralight lg:text-7xl font-bold text-white leading-tight transition-all duration-1000 delay-200 ${
                 isVisible
                   ? "translate-y-0 opacity-100"
                   : "translate-y-8 opacity-0"
               }`}
             >
-              {title.split(" ").map((word, index) => (
-                <span
-                  key={index}
-                  className={`inline-block transition-all duration-700`}
-                  style={{ transitionDelay: `${300 + index * 100}ms` }}
-                >
-                  {["Creative", "Media"].includes(word) ? (
-                    <span className="text-[#29bba5] relative">
-                      {word}
-                      <span className="absolute -bottom-2 left-0 w-full h-1 bg-[#29bba5]/50 rounded-full"></span>
-                    </span>
-                  ) : (
-                    word
-                  )}
-                  {index < title.split(" ").length - 1 && " "}
-                </span>
-              ))}
+              {/* First word with gradient */}
+              <div className="inline-block">
+                {title.split(" ")[0] && (
+                  <span className="text-7xl font-extralight bg-gradient-to-r from-white to-[#28bba4] bg-clip-text text-transparent">
+                    {title.split(" ")[0]}
+                    <span className="absolute -bottom-2 left-0 w-full h-1 bg-[#29bba5]/50 rounded-full"></span>
+                  </span>
+                )}
+              </div>
+              {/* Rest of the title on next line */}
+              <div className="block mt-2">
+                {title.split(" ").slice(1).join(" ")}
+              </div>
             </h1>
 
             <p

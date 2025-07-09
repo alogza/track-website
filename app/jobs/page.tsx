@@ -126,16 +126,23 @@ export default function PortfolioPage() {
 
   return (
     <div className="min-h-screen bg-white">
-
-
       <HeroSections
-        title="Creative Media Solutions"
+        title="Track Protofolio"
         description="Professional event coverage, audio production, and visual storytelling that brings your vision to life."
-        image="/test.jpg" // replace with your actual image path
+        image="/salah1.jpeg" // replace with your actual image path
       />
 
       {/* Portfolio Section */}
       <div className="py-20 bg-white">
+        <div className="text-center mb-16">
+          <h2 className="text-5xl md:text-7xl lg:text-9xl font-extralight text-gray-800 mb-4">
+            Our{" "}
+            <span className="text-5xl md:text-7xl lg:text-9xl bg-gradient-to-r from-gray-900 via-[#28bba4] to-[#28bba4] bg-clip-text text-transparent">
+              Works
+            </span>
+          </h2>
+          <div className="w-24 h-1 bg-[#28bca2] mx-auto rounded-full"></div>
+        </div>
         <div className="max-w-7xl mx-auto px-6">
           {/* Category Filter */}
           <div className="flex flex-wrap justify-center gap-4 mb-12">
@@ -305,69 +312,114 @@ export default function PortfolioPage() {
                 ))}
               </div>
 
-              {/* Project Details */}
-              <div className="grid md:grid-cols-2 gap-8">
-                <div>
-                  <h3 className="text-lg font-bold text-gray-800 mb-3 text-right">
-                    وصف المشروع
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed text-right mb-4">
-                    {selectedProject.description}
-                  </p>
-                  <p className="text-gray-500 leading-relaxed">
-                    {selectedProject.descriptionEn}
-                  </p>
-                </div>
+           
+{/* Project Details */}
+<div className="grid lg:grid-cols-2 gap-8">
+  {/* Project Description */}
+  <div className="bg-gradient-to-br from-white to-gray-50 rounded-2xl p-8 shadow-lg border border-gray-100">
+    <div className="mb-6">
+      <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
+        <div className="w-1 h-8 bg-gradient-to-b from-[#28bca2] to-[#20a085] rounded-full"></div>
+        Project Overview
+      </h3>
+    </div>
+    
+    <div className="space-y-6">
+      <div className="relative pl-4">
+        <p className="text-gray-700 leading-relaxed text-lg font-medium">
+          {selectedProject.description}
+        </p>
+        <div className="absolute left-0 top-0 w-0.5 h-full bg-gradient-to-b from-[#28bca2]/20 to-transparent"></div>
+      </div>
+      
+      <div className="pt-4 border-t border-gray-100">
+        <p className="text-gray-600 leading-relaxed">
+          {selectedProject.descriptionEn}
+        </p>
+      </div>
+    </div>
+  </div>
 
-                <div>
-                  <h3 className="text-lg font-bold text-gray-800 mb-3">
-                    تفاصيل المشروع
-                  </h3>
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3">
-                      <User size={20} className="text-[#28bca2]" />
-                      <div>
-                        <p className="font-medium text-right">
-                          {selectedProject.client}
-                        </p>
-                        <p className="text-sm text-gray-500">
-                          {selectedProject.clientEn}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <Calendar size={20} className="text-[#28bca2]" />
-                      <p className="font-medium">
-                        {new Date(selectedProject.date).toLocaleDateString(
-                          "ar-SA"
-                        )}
-                      </p>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      {React.createElement(
-                        categories.find(
-                          (cat) => cat.id === selectedProject.category
-                        )?.icon || Eye,
-                        {
-                          size: 20,
-                          style: {
-                            color: categories.find(
-                              (cat) => cat.id === selectedProject.category
-                            )?.color,
-                          },
-                        }
-                      )}
-                      <p className="font-medium text-right">
-                        {
-                          categories.find(
-                            (cat) => cat.id === selectedProject.category
-                          )?.name
-                        }
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+  {/* Project Details */}
+  <div className="bg-gradient-to-br from-white to-gray-50 rounded-2xl p-8 shadow-lg border border-gray-100">
+    <div className="mb-6">
+      <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
+        <div className="w-1 h-8 bg-gradient-to-b from-[#28bca2] to-[#20a085] rounded-full"></div>
+        Project Details
+      </h3>
+    </div>
+    
+    <div className="space-y-6">
+      {/* Client Information */}
+      <div className="group hover:bg-white/50 p-4 rounded-xl transition-all duration-200">
+        <div className="flex items-start gap-4">
+          <div className="flex-shrink-0">
+            <div className="w-12 h-12 bg-gradient-to-br from-[#28bca2] to-[#20a085] rounded-xl flex items-center justify-center shadow-lg">
+              <User size={20} className="text-white" />
+            </div>
+          </div>
+          <div className="flex-1">
+            <p className="font-semibold text-gray-900 text-lg mb-1">
+              {selectedProject.client}
+            </p>
+            <p className="text-gray-600 text-sm">
+              {selectedProject.clientEn}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Project Date */}
+      <div className="group hover:bg-white/50 p-4 rounded-xl transition-all duration-200">
+        <div className="flex items-center gap-4">
+          <div className="flex-shrink-0">
+            <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+              <Calendar size={20} className="text-white" />
+            </div>
+          </div>
+          <div className="flex-1">
+            <p className="font-semibold text-gray-900 text-lg">
+              {new Date(selectedProject.date).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long", 
+                day: "numeric"
+              })}
+            </p>
+            <p className="text-gray-600 text-sm">Project Date</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Category */}
+      <div className="group hover:bg-white/50 p-4 rounded-xl transition-all duration-200">
+        <div className="flex items-center gap-4">
+          <div className="flex-shrink-0">
+            <div 
+              className="w-12 h-12 rounded-xl flex items-center justify-center shadow-lg"
+              style={{
+                background: `linear-gradient(135deg, ${categories.find(cat => cat.id === selectedProject.category)?.color || "#28bca2"}, ${(categories.find(cat => cat.id === selectedProject.category)?.color || "#28bca2")}dd)`
+              }}
+            >
+              {React.createElement(
+                categories.find(cat => cat.id === selectedProject.category)?.icon || Eye,
+                {
+                  size: 20,
+                  className: "text-white"
+                }
+              )}
+            </div>
+          </div>
+          <div className="flex-1">
+            <p className="font-semibold text-gray-900 text-lg">
+              {categories.find(cat => cat.id === selectedProject.category)?.name}
+            </p>
+            <p className="text-gray-600 text-sm">Project Category</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
             </div>
           </div>
         </div>

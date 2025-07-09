@@ -31,7 +31,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
-import HeroSections from "@/components/heading";
+import HeaderPage from "@/components/heading";
 
 export default function ServicesPage() {
   const [isVisible, setIsVisible] = useState(false);
@@ -73,7 +73,7 @@ export default function ServicesPage() {
         "We provide comprehensive coverage for all types of events with the latest technologies and advanced equipment with a professional team of photographers and technicians",
       color: "#28bca2",
       icon: Camera,
-      image: "/placeholder.svg?height=500&width=700&text=Event+Coverage",
+      image: "/events.jpg?height=500&width=700&text=Event+Coverage",
       features: [
         "Professional Photography",
         "4K Video Recording",
@@ -138,7 +138,7 @@ export default function ServicesPage() {
         "We offer comprehensive audio production services from recording to mastering with world-class quality and professional standards in our studios equipped with the latest technology",
       color: "#ff6b35",
       icon: Music,
-      image: "/placeholder.svg?height=500&width=700&text=Audio+Production",
+      image: "/event2.jpg?height=500&width=700&text=Audio+Production",
       features: [
         "Advanced Recording Studio",
         "Professional Sound Engineers",
@@ -203,7 +203,7 @@ export default function ServicesPage() {
         "We excel in visual content production from commercials to documentaries and short films using the latest filming and editing technologies",
       color: "#00bcd4",
       icon: Film,
-      image: "/placeholder.svg?height=500&width=700&text=Visual+Production",
+      image: "/events2.jpg?height=500&width=700&text=Visual+Production",
       features: [
         "Advanced Cinematic Cameras",
         "Professional Directing Team",
@@ -385,23 +385,27 @@ export default function ServicesPage() {
 
   return (
     <div className="min-h-screen bg-white">
-
-      <HeroSections
-        title="Creative Media Solutions"
+      <HeaderPage
+        title="Track Services"
         description="Professional event coverage, audio production, and visual storytelling that brings your vision to life."
-        image="/test.jpg" // replace with your actual image path
+        image="/salah2.jpeg" // replace with your actual image path
       />
-
-
 
       {/* Main Services Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-              <span className="text-[#28bca2]">Our Main Services</span>
-            </h2>
+            <div className="text-center mb-16">
+              <h2 className="text-5xl md:text-7xl lg:text-9xl font-extralight text-gray-800 mb-4">
+                Our{" "}
+                <span className="text-5xl md:text-7xl lg:text-9xl bg-gradient-to-r from-gray-900 via-[#28bba4] to-[#28bba4] bg-clip-text text-transparent">
+                  Services
+                </span>
+              </h2>
+              <div className="w-24 h-1 bg-[#28bca2] mx-auto rounded-full"></div>
+            </div>
+
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               We offer a comprehensive range of media and production services
               with the highest international quality standards
@@ -429,9 +433,8 @@ export default function ServicesPage() {
                   }}
                 >
                   <Icon size={24} />
-                  <div className="text-right">
+                  <div className="text-left">
                     <div className="font-bold">{service.title}</div>
-                    <div className="text-sm opacity-80">{service.titleEn}</div>
                   </div>
                 </button>
               );
@@ -456,19 +459,17 @@ export default function ServicesPage() {
                     <h3 className="text-3xl font-bold text-gray-800">
                       {mainServices[activeTab].title}
                     </h3>
-                    <p className="text-lg text-gray-600">
-                      {mainServices[activeTab].titleEn}
-                    </p>
+
                   </div>
                 </div>
 
-                <p className="text-gray-700 text-lg leading-relaxed mb-8 text-right">
+                <p className="text-gray-700 text-lg leading-relaxed mb-8 text-left">
                   {mainServices[activeTab].description}
                 </p>
 
                 {/* Features */}
                 <div className="mb-8">
-                  <h4 className="text-xl font-bold text-gray-800 mb-4 text-right">
+                  <h4 className="text-xl font-bold text-gray-800 mb-4 text-left">
                     Service Features
                   </h4>
                   <div className="grid sm:grid-cols-2 gap-3">
@@ -485,7 +486,7 @@ export default function ServicesPage() {
                             style={{ color: mainServices[activeTab].color }}
                           />
                         </div>
-                        <span className="text-gray-700 text-right">
+                        <span className="text-gray-700 text-left">
                           {feature}
                         </span>
                       </div>
@@ -580,7 +581,7 @@ export default function ServicesPage() {
                           />
                         </div>
                         <div>
-                          <h4 className="font-bold text-gray-800 text-right">
+                          <h4 className="font-bold text-gray-800 text-left">
                             {subService.name}
                           </h4>
                           <p className="text-sm text-gray-600">
@@ -588,7 +589,7 @@ export default function ServicesPage() {
                           </p>
                         </div>
                       </div>
-                      <p className="text-gray-600 text-sm mb-4 text-right leading-relaxed">
+                      <p className="text-gray-600 text-sm mb-4 text-left leading-relaxed">
                         {subService.description}
                       </p>
                       <div className="flex items-center justify-between">
@@ -632,11 +633,11 @@ export default function ServicesPage() {
                     <div className="w-16 h-16 bg-gradient-to-br from-[#28bca2] to-[#28bca2]/80 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                       <Icon size={32} className="text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-gray-800 mb-2 text-right">
+                    <h3 className="text-xl font-bold text-gray-800 mb-2 text-center">
                       {service.title}
                     </h3>
-                    <p className="text-gray-600 mb-2">{service.titleEn}</p>
-                    <p className="text-gray-600 text-sm mb-4 text-right leading-relaxed">
+
+                    <p className="text-gray-600 text-sm mb-4 text-left leading-relaxed">
                       {service.description}
                     </p>
                     <div className="space-y-2">
@@ -646,7 +647,7 @@ export default function ServicesPage() {
                           className="flex items-center gap-2 text-sm text-gray-600"
                         >
                           <Check size={14} className="text-[#28bca2]" />
-                          <span className="text-right">{feature}</span>
+                          <span className="text-left">{feature}</span>
                         </div>
                       ))}
                     </div>
@@ -658,60 +659,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Process Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">
-              <span className="text-[#28bca2]">How We Work</span>
-            </h2>
-            <p className="text-xl text-gray-600">
-              Organized and thoughtful process to ensure the best results
-            </p>
-          </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {processSteps.map((step, index) => {
-              const Icon = step.icon;
-              return (
-                <div key={index} className="relative group">
-                  {/* Connection Line */}
-                  {index < processSteps.length - 1 && (
-                    <div className="hidden lg:block absolute top-16 left-full w-full h-0.5 bg-gradient-to-r from-gray-300 to-transparent z-0"></div>
-                  )}
-
-                  <div className="relative z-10 text-center">
-                    <div
-                      className="w-32 h-32 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-all duration-300 shadow-lg"
-                      style={{
-                        backgroundColor: `${step.color}15`,
-                        border: `3px solid ${step.color}`,
-                      }}
-                    >
-                      <div className="text-center">
-                        <div
-                          className="text-2xl font-bold mb-1"
-                          style={{ color: step.color }}
-                        >
-                          {step.step}
-                        </div>
-                        <Icon size={24} style={{ color: step.color }} />
-                      </div>
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-800 mb-2 text-right">
-                      {step.title}
-                    </h3>
-                    <p className="text-gray-600 mb-2">{step.titleEn}</p>
-                    <p className="text-gray-600 text-sm leading-relaxed text-right">
-                      {step.description}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
 
       {/* Testimonials */}
       <section className="py-20 bg-white">
@@ -743,10 +691,10 @@ export default function ServicesPage() {
                       />
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-800 text-right">
+                      <h4 className="font-bold text-gray-800 text-left">
                         {testimonial.name}
                       </h4>
-                      <p className="text-sm text-gray-600 text-right">
+                      <p className="text-sm text-gray-600 text-left">
                         {testimonial.position}
                       </p>
                       <div className="flex gap-1 mt-1">
@@ -761,11 +709,11 @@ export default function ServicesPage() {
                     </div>
                   </div>
 
-                  <p className="text-gray-700 text-right leading-relaxed mb-4">
+                  <p className="text-gray-700 text-left leading-relaxed mb-4">
                     "{testimonial.text}"
                   </p>
 
-                  <div className="text-sm text-[#28bca2] font-medium text-right">
+                  <div className="text-sm text-[#28bca2] font-medium text-left">
                     Project: {testimonial.project}
                   </div>
                 </CardContent>
@@ -774,7 +722,6 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
-
 
       {/* CSS Animations */}
       <style jsx>{`

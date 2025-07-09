@@ -116,7 +116,7 @@ export default function HomePage() {
         scrollHint: "Discover More",
       },
       about: {
-        title: "About Track",
+        title: "Discover Track",
         subtitle: "Passionate about creating meaningful visual experiences",
         description:
           "With over a decade of experience in digital artistry, I specialize in transforming abstract concepts into compelling visual narratives that resonate with audiences worldwide.",
@@ -926,46 +926,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Enhanced Footer */}
-      <footer className="py-20 border-t border-gray-200 bg-gradient-to-b from-white to-gray-50/50 transition-all duration-1000">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="mb-8 group">
-              <div className="relative inline-block">
-                <div className="absolute inset-0 bg-[#28bba4] rounded-lg blur-sm opacity-0 group-hover:opacity-30 transition-all duration-500" />
-                <Image
-                  src="/track-logo.png"
-                  alt="Track Logo"
-                  width={120}
-                  height={40}
-                  className="h-10 w-auto mx-auto opacity-60 group-hover:opacity-100 transition-all duration-300 relative z-10"
-                />
-              </div>
-            </div>
 
-            <p className="text-gray-600 mb-8 font-light text-lg transition-all duration-300 hover:text-gray-700">
-              Creating waves of artistic excellence
-            </p>
-
-            <div className="flex justify-center space-x-8 mb-8">
-              {[Instagram, Linkedin, Twitter].map((Icon, index) => (
-                <a
-                  key={index}
-                  href="#"
-                  className="text-gray-400 hover:text-[#28bba4] transition-all duration-300 hover:scale-125 transform p-3 rounded-full hover:bg-[#28bba4]/10"
-                  style={{ transitionDelay: `${index * 50}ms` }}
-                >
-                  <Icon className="h-6 w-6" />
-                </a>
-              ))}
-            </div>
-
-            <div className="text-gray-400 text-sm font-light transition-all duration-300 hover:text-gray-500">
-              © 2024 Track.com. All rights reserved.
-            </div>
-          </div>
-        </div>
-      </footer>
 
       {/* Enhanced Styles */}
       <style jsx>{`

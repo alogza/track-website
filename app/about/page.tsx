@@ -40,7 +40,7 @@ export default function HeroSection() {
       <HeroSections
         title="Creative Media Solutions"
         description="Professional event coverage, audio production, and visual storytelling that brings your vision to life."
-        image="/test.jpg" // replace with your actual image path
+        image="/hasan2.jpeg" // replace with your actual image path
       />
 
       {/* Add the new About Section */}
@@ -91,9 +91,9 @@ function AboutSection() {
   //   }, []);
 
   const sectionImages = [
-    "/background-music.jpg?height=400&width=400&text=Mission", // Mission image
-    "/reference.png?height=400&width=400&text=Vision", // Vision image
-    "/1[1].jpg?height=400&width=400&text=Values", // Values image
+    "/event2.jpg", // Vision image
+    "/events.jpg", // Mission image
+    "/image.jpg", // Values image
   ];
 
   const sections = [
@@ -139,7 +139,10 @@ function AboutSection() {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-5xl md:text-7xl lg:text-9xl font-extralight text-gray-800 mb-4">
-            About <span className="text-5xl md:text-7xl lg:text-9xl bg-gradient-to-r from-gray-900 via-[#28bba4] to-[#28bba4] bg-clip-text text-transparent">Track</span>
+            About{" "}
+            <span className="text-5xl md:text-7xl lg:text-9xl bg-gradient-to-r from-gray-900 via-[#28bba4] to-[#28bba4] bg-clip-text text-transparent">
+              Track
+            </span>
           </h2>
           <div className="w-24 h-1 bg-[#28bca2] mx-auto rounded-full"></div>
         </div>
@@ -192,9 +195,9 @@ function AboutSection() {
                     <p className="text-gray-600 text-lg leading-relaxed mb-4">
                       {section.description}
                     </p>
-                    <p className="text-gray-500 font-arabic text-right leading-relaxed">
+                    {/* <p className="text-gray-500 font-arabic text-right leading-relaxed">
                       {section.descriptionAr}
-                    </p>
+                    </p> */}
 
                     {/* Animated Line */}
                     <div className="mt-8">
@@ -235,11 +238,11 @@ function AboutSection() {
                             key={`${sectionIndex}-${imgIndex}`}
                             className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
                               isCurrentImage
-                                ? "opacity-100 scale-100 rotate-0 z-10"
+                                ? "opacity-100 scale-100 z-10"
                                 : isNextImage
-                                ? "opacity-0 scale-110 rotate-6 translate-x-8 z-5"
+                                ? "opacity-0 scale-110 translate-x-8 z-5"
                                 : isPrevImage
-                                ? "opacity-0 scale-90 -rotate-6 -translate-x-8 z-0"
+                                ? "opacity-0 scale-90 -translate-x-8 z-0"
                                 : "opacity-0 scale-95 z-0"
                             }`}
                           >
@@ -305,7 +308,7 @@ function AboutSection() {
                       </div>
 
                       {/* Current Image Label */}
-                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                      {/* <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
                         <div className="transform transition-all duration-500">
                           <h4 className="text-white font-bold text-xl">
                             {currentImageData.title}
@@ -318,7 +321,7 @@ function AboutSection() {
                             {sections[sectionIndex].title}
                           </div>
                         </div>
-                      </div>
+                      </div> */}
 
                       {/* Animated Corner Element */}
                       <div
@@ -357,7 +360,7 @@ function AboutSection() {
                     />
 
                     {/* Movement Trail Effect */}
-                    <div className="absolute inset-0 pointer-events-none">
+                    <div className="absolute inset-0 pointer-events-none max-sm:hidden block">
                       <div
                         className="absolute w-full h-full rounded-3xl border-2 border-dashed opacity-30 animate-spin"
                         style={{
