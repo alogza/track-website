@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { WaveShowcase } from "@/components/wave-showcase"
-import { GlassCard } from "@/components/glass-card"
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { WaveShowcase } from "@/components/wave-showcase";
+import { GlassCard } from "@/components/glass-card";
 import {
   Menu,
   X,
@@ -25,21 +25,73 @@ import {
   Quote,
   CheckCircle,
   ArrowDown,
-} from "lucide-react"
-import { ScrollProgress } from "@/components/scroll-progress"
-import { FloatingElements } from "@/components/floating-elements"
-import { ParticleField } from "@/components/particle-field"
+  Music,
+  Film,
+  Calendar,
+  User,
+  Eye,
+} from "lucide-react";
+import { ScrollProgress } from "@/components/scroll-progress";
+import { FloatingElements } from "@/components/floating-elements";
+import { ParticleField } from "@/components/particle-field";
 
 export default function HomePage() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [language, setLanguage] = useState<"en" | "ar">("en")
-  const [scrollY, setScrollY] = useState(0)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [language, setLanguage] = useState<"en" | "ar">("en");
+  const [scrollY, setScrollY] = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [projects, setProjects] = useState<Project[]>([]);
 
   useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY)
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/projects")
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch projects");
+        return res.json();
+      })
+      .then(setProjects)
+      .catch(console.error);
+  }, []);
+
+  const categories = [
+    {
+      id: "all",
+      name: "جميع الأعمال",
+      nameEn: "All Work",
+      color: "#28bca2",
+      icon: Eye,
+    },
+    {
+      id: "event-coverage",
+      name: "تغطية الفعاليات",
+      nameEn: "Event Coverage",
+      color: "#28bca2",
+      icon: Camera,
+    },
+    {
+      id: "audio-production",
+      name: "إنتاج صوتي",
+      nameEn: "Audio Production",
+      color: "#ff6b35",
+      icon: Music,
+    },
+    {
+      id: "visual-production",
+      name: "إنتاج مرئي",
+      nameEn: "Visual Production",
+      color: "#00bcd4",
+      icon: Film,
+    },
+  ];
+  const filteredProjects =
+    selectedCategory === "all"
+      ? projects
+      : projects.filter((project) => project.category === selectedCategory);
 
   const content = {
     en: {
@@ -105,13 +157,23 @@ export default function HomePage() {
             image: "/services.jpg",
             title: "Creative Direction",
             desc: "Strategic creative guidance for your projects and campaigns",
-            features: ["Art Direction", "Creative Campaign Strategy", "Visual Storytelling", "Creative Consulting"],
+            features: [
+              "Art Direction",
+              "Creative Campaign Strategy",
+              "Visual Storytelling",
+              "Creative Consulting",
+            ],
           },
           {
             image: "/services.jpg",
             title: "Visual Consulting",
             desc: "Expert design consultation and creative problem-solving",
-            features: ["Design System Audit", "Creative Workshops", "Strategic Visual Planning", "Brand Evolution"],
+            features: [
+              "Design System Audit",
+              "Creative Workshops",
+              "Strategic Visual Planning",
+              "Brand Evolution",
+            ],
           },
         ],
       },
@@ -119,8 +181,16 @@ export default function HomePage() {
         title: "My Process",
         subtitle: "A systematic approach to creative excellence",
         steps: [
-          { title: "Discovery", desc: "Understanding your vision and goals", icon: "🔍" },
-          { title: "Strategy", desc: "Developing the creative roadmap", icon: "🎯" },
+          {
+            title: "Discovery",
+            desc: "Understanding your vision and goals",
+            icon: "🔍",
+          },
+          {
+            title: "Strategy",
+            desc: "Developing the creative roadmap",
+            icon: "🎯",
+          },
           { title: "Design", desc: "Bringing concepts to life", icon: "🎨" },
           { title: "Refinement", desc: "Perfecting every detail", icon: "✨" },
           { title: "Delivery", desc: "Launching your vision", icon: "🚀" },
@@ -213,13 +283,23 @@ export default function HomePage() {
             image: "/services.jpg",
             title: "الفن الرقمي",
             desc: "أعمال فنية رقمية معاصرة وتجارب تفاعلية",
-            features: ["الرسوم الرقمية", "الرسوم المتحركة والحركة", "تصميم الوسائط التفاعلية", "إنشاء فن NFT"],
+            features: [
+              "الرسوم الرقمية",
+              "الرسوم المتحركة والحركة",
+              "تصميم الوسائط التفاعلية",
+              "إنشاء فن NFT",
+            ],
           },
           {
             image: "/services.jpg",
             title: "التوجيه الإبداعي",
             desc: "إرشاد إبداعي استراتيجي لمشاريعك وحملاتك",
-            features: ["التوجيه الفني", "استراتيجية الحملة الإبداعية", "السرد البصري", "الاستشارة الإبداعية"],
+            features: [
+              "التوجيه الفني",
+              "استراتيجية الحملة الإبداعية",
+              "السرد البصري",
+              "الاستشارة الإبداعية",
+            ],
           },
           {
             image: "/services.jpg",
@@ -239,7 +319,11 @@ export default function HomePage() {
         subtitle: "نهج منهجي للتميز الإبداعي",
         steps: [
           { title: "الاكتشاف", desc: "فهم رؤيتك وأهدافك", icon: "🔍" },
-          { title: "الاستراتيجية", desc: "تطوير خارطة الطريق الإبداعية", icon: "🎯" },
+          {
+            title: "الاستراتيجية",
+            desc: "تطوير خارطة الطريق الإبداعية",
+            icon: "🎯",
+          },
           { title: "التصميم", desc: "إحياء المفاهيم", icon: "🎨" },
           { title: "التحسين", desc: "إتقان كل التفاصيل", icon: "✨" },
           { title: "التسليم", desc: "إطلاق رؤيتك", icon: "🚀" },
@@ -248,7 +332,13 @@ export default function HomePage() {
       portfolio: {
         title: "أعمال مختارة",
         subtitle: "مجموعة منتقاة من المشاريع المميزة",
-        categories: ["الكل", "العلامة التجارية", "الفن الرقمي", "تصميم الويب", "الحركة"],
+        categories: [
+          "الكل",
+          "العلامة التجارية",
+          "الفن الرقمي",
+          "تصميم الويب",
+          "الحركة",
+        ],
       },
       testimonials: {
         title: "توصيات العملاء",
@@ -280,52 +370,78 @@ export default function HomePage() {
         cta: "ابدأ مشروعك",
       },
     },
-  }
+  };
 
-  const t = content[language]
+  const t = content[language];
 
   const portfolioImages = [
     "/image.jpg",
-     "/image.jpg",
-     "/image.jpg",
-     "/image.jpg",
-     "/image.jpg",
-     "/image.jpg",
-     "/image.jpg",
-     "/image.jpg",
-  ]
+    "/image.jpg",
+    "/image.jpg",
+    "/image.jpg",
+    "/image.jpg",
+    "/image.jpg",
+    "/image.jpg",
+    "/image.jpg",
+  ];
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/30 ${language === "ar" ? "rtl" : "ltr"}`}>
-           {/* Scroll Progress */}
-           <ScrollProgress />
+    <div
+      className={`min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/30 ${
+        language === "ar" ? "rtl" : "ltr"
+      }`}
+    >
+      {/* Scroll Progress */}
+      <ScrollProgress />
 
-{/* Particle Field */}
-<ParticleField />
+      {/* Particle Field */}
+      <ParticleField />
 
-{/* Floating Elements */}
-{/* <FloatingElements /> */}
-{/* Background Pattern */}
+      {/* Floating Elements */}
+      {/* <FloatingElements /> */}
+      {/* Background Pattern */}
 
-<div className="fixed inset-0 opacity-[0.02] pointer-events-none">
-        <div className="absolute inset-0" style={{ backgroundImage: `radial-gradient(circle at 25% 25%, #28bba4 2px, transparent 2px), radial-gradient(circle at 75% 75%, #28bba4 1px, transparent 1px)`, backgroundSize: "50px 50px" }} />
+      <div className="fixed inset-0 opacity-[0.02] pointer-events-none">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `radial-gradient(circle at 25% 25%, #28bba4 2px, transparent 2px), radial-gradient(circle at 75% 75%, #28bba4 1px, transparent 1px)`,
+            backgroundSize: "50px 50px",
+          }}
+        />
       </div>
 
       {/* Premium Navigation */}
       {/* Premium Navigation with Enhanced Glass Effect */}
       {/* Use the Navbar component here */}
 
-
-   {/* Enhanced Hero Section with Special Background */}
-   <section id="home" className="min-h-screen flex items-center justify-center pt-32 pb-20 relative overflow-hidden" style={{ background: `radial-gradient(circle at 20% 80%, rgba(40, 187, 164, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%), radial-gradient(circle at 40% 40%, rgba(236, 72, 153, 0.1) 0%, transparent 50%), linear-gradient(135deg, rgba(249, 250, 251, 0.8) 0%, rgba(243, 244, 246, 0.9) 50%, rgba(229, 231, 235, 0.8) 100%)` }}>
+      {/* Enhanced Hero Section with Special Background */}
+      <section
+        id="home"
+        className="min-h-screen flex items-center justify-center pt-32 pb-20 relative overflow-hidden"
+        style={{
+          background: `radial-gradient(circle at 20% 80%, rgba(40, 187, 164, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%), radial-gradient(circle at 40% 40%, rgba(236, 72, 153, 0.1) 0%, transparent 50%), linear-gradient(135deg, rgba(249, 250, 251, 0.8) 0%, rgba(243, 244, 246, 0.9) 50%, rgba(229, 231, 235, 0.8) 100%)`,
+        }}
+      >
         {/* Gradient overlay for depth */}
-        <div className="absolute inset-0 pointer-events-none" style={{ background: `linear-gradient(45deg, transparent 0%, rgba(40, 187, 164, 0.05) 25%, transparent 50%, rgba(139, 92, 246, 0.05) 75%, transparent 100%)` }} />
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: `linear-gradient(45deg, transparent 0%, rgba(40, 187, 164, 0.05) 25%, transparent 50%, rgba(139, 92, 246, 0.05) 75%, transparent 100%)`,
+          }}
+        />
 
         <div className="container mx-auto px-4 text-center relative z-10 ">
           <div className="max-w-6xl mx-auto">
             {/* Absolutely positioned WaveShowcase overlay */}
-            <div className="absolute left-0 right-0 top-28 z-30 flex justify-center pointer-events-auto" style={{width: '100%', height: 'auto'}}>
-              <WaveShowcase images={portfolioImages} centerImage="/events.jpg"/>
+            <div
+              className="absolute left-0 right-0 top-28 z-30 flex justify-center pointer-events-auto"
+              style={{ width: "100%", height: "auto" }}
+            >
+              <WaveShowcase
+                images={portfolioImages}
+                centerImage="/events.jpg"
+              />
             </div>
 
             {/* Enhanced Animated Badge */}
@@ -344,10 +460,9 @@ export default function HomePage() {
                   animation: "gradient-shift 6s ease-in-out infinite, float 4s ease-in-out infinite",
                 }}
               > */}
-                {t.hero.title}
+              {t.hero.title}
               {/* </span> */}
             </h1>
-
 
             {/* Subtitle */}
             {/* <p
@@ -356,7 +471,7 @@ export default function HomePage() {
             >
               {t.hero.subtitle}
             </p> */}
-            
+
             {/* Arabic Slogan with Special Effects */}
             <p
               className="text-xl md:text-2xl text-[#28bba4] mb-[420px] font-medium animate-in fade-in-0 slide-in-from-bottom-4 duration-1000 delay-600"
@@ -396,7 +511,9 @@ export default function HomePage() {
 
             {/* Enhanced Scroll Hint */}
             <div className="flex flex-col items-center animate-bounce">
-              <span className="text-gray-500 text-sm mb-3 font-light tracking-wide">{t.hero.scrollHint}</span>
+              <span className="text-gray-500 text-sm mb-3 font-light tracking-wide">
+                {t.hero.scrollHint}
+              </span>
               <div className="w-6 h-10 border-2 border-[#28bba4]/50 rounded-full flex justify-center">
                 <div className="w-1 h-3 bg-[#28bba4] rounded-full mt-2 animate-bounce" />
               </div>
@@ -406,10 +523,12 @@ export default function HomePage() {
       </section>
 
       {/* Rest of sections remain the same... */}
-      
-      
+
       {/* Enhanced About Section */}
-      <section id="about" className="py-32 relative transition-all duration-1000">
+      <section
+        id="about"
+        className="py-32 relative transition-all duration-1000"
+      >
         <div className="container mx-auto px-4">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-20">
@@ -467,8 +586,8 @@ export default function HomePage() {
         </div>
       </section>
 
-     {/* Enhanced Services Section with Image Cards */}
-     <section
+      {/* Enhanced Services Section with Image Cards */}
+      <section
         id="services"
         className="py-32 bg-gradient-to-b from-gray-50/50 to-white relative transition-all duration-1000"
       >
@@ -536,7 +655,6 @@ export default function HomePage() {
         </div>
       </section>
 
-
       {/* Process Section */}
       {/* <section id="process" className="py-32">
         <div className="container mx-auto px-4">
@@ -566,7 +684,6 @@ export default function HomePage() {
         </div>
       </section> */}
 
-
       {/* Enhanced Portfolio Section */}
       <section
         id="portfolio"
@@ -585,7 +702,7 @@ export default function HomePage() {
           </div>
 
           {/* Enhanced Portfolio Filter */}
-          <div className="flex justify-center mb-16">
+          {/* <div className="flex justify-center mb-16">
             <GlassCard className="p-3 backdrop-blur-xl transition-all duration-500 hover:shadow-xl" hover={false}>
               <div className="flex space-x-2">
                 {t.portfolio.categories.map((category, index) => (
@@ -603,23 +720,60 @@ export default function HomePage() {
                 ))}
               </div>
             </GlassCard>
+          </div> */}
+          {/* Category Filter */}
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
+            {categories.map((category) => {
+              const Icon = category.icon;
+              const isActive = selectedCategory === category.id;
+
+              return (
+                <button
+                  key={category.id}
+                  onClick={() => setSelectedCategory(category.id)}
+                  className={`flex items-center gap-3 px-6 py-3 rounded-full transition-all duration-300 ${
+                    isActive
+                      ? "shadow-lg scale-105"
+                      : "hover:scale-102 hover:shadow-md"
+                  }`}
+                  style={{
+                    backgroundColor: isActive ? `${category.color}15` : "white",
+                    border: `2px solid ${
+                      isActive ? category.color : "#e5e7eb"
+                    }`,
+                    color: isActive ? category.color : "#6b7280",
+                  }}
+                >
+                  <Icon size={20} />
+                  <span className="font-medium text-right">
+                    {category.name}
+                  </span>
+                  <span className="text-sm opacity-70">{category.nameEn}</span>
+                </button>
+              );
+            })}
           </div>
 
+          {/* Projects Grid (show only 6) */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {Array.from({ length: 6 }).map((_, index) => (
-              <GlassCard key={index} className="overflow-hidden group">
-                <div className=" relative overflow-hidden">
+            {filteredProjects.slice(0, 6).map((project, index) => (
+              <GlassCard key={project.id} className="overflow-hidden group">
+                <div className="relative h-56 overflow-hidden">
                   <Image
-                    src={`/project.jpg`}
-                    alt={`Portfolio ${index + 1}`}
+                    src={project.images?.[0] || "/project.jpg"}
+                    alt={project.title || `Portfolio ${index + 1}`}
                     width={500}
-                    height={200}
-                    className="object-cover group-hover:scale-110  duration-700"
+                    height={224}
+                    className="object-cover w-full h-full group-hover:scale-110 duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
                     <div className="absolute bottom-6 left-6 right-6">
-                      <h3 className="text-white text-lg font-medium mb-2">Project {index + 1}</h3>
-                      <p className="text-white/80 text-sm">Creative Direction</p>
+                      <h3 className="text-white text-lg font-medium mb-2">
+                        {project.title || `Project ${index + 1}`}
+                      </h3>
+                      <p className="text-white/80 text-sm">
+                        {project.category || "Creative Direction"}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -629,9 +783,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      
       {/* Enhanced Testimonials Section */}
-      <section id="testimonials" className="py-32 relative transition-all duration-1000">
+      <section
+        id="testimonials"
+        className="py-32 relative transition-all duration-1000"
+      >
         <div className="container mx-auto px-4">
           <div className="text-center mb-20">
             <h2 className="text-5xl md:text-7xl font-extralight text-gray-900 mb-8 tracking-tighter transition-all duration-700 hover:scale-105">
@@ -670,7 +826,9 @@ export default function HomePage() {
                 </div>
 
                 <div className="relative z-10">
-                  <p className="font-medium text-gray-900 mb-1 transition-all duration-300">{testimonial.author}</p>
+                  <p className="font-medium text-gray-900 mb-1 transition-all duration-300">
+                    {testimonial.author}
+                  </p>
                   <p className="text-gray-500 text-sm font-light transition-all duration-300 group-hover:text-gray-600">
                     {testimonial.role}
                   </p>
@@ -680,7 +838,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
 
       {/* Enhanced Contact Section */}
       <section
@@ -704,7 +861,11 @@ export default function HomePage() {
                 {[
                   { icon: Mail, title: "Email", value: "hello@track.com" },
                   { icon: Phone, title: "Phone", value: "+1 (555) 123-4567" },
-                  { icon: MapPin, title: "Location", value: "Creative District" },
+                  {
+                    icon: MapPin,
+                    title: "Location",
+                    value: "Creative District",
+                  },
                 ].map((item, index) => (
                   <GlassCard
                     key={index}
@@ -716,7 +877,9 @@ export default function HomePage() {
                         <item.icon className="h-6 w-6 text-[#28bba4] transition-colors duration-300" />
                       </div>
                       <div className="text-left">
-                        <p className="font-medium text-gray-900 mb-1 transition-all duration-300">{item.title}</p>
+                        <p className="font-medium text-gray-900 mb-1 transition-all duration-300">
+                          {item.title}
+                        </p>
                         <p className="text-gray-600 font-light transition-all duration-300 group-hover:text-gray-700">
                           {item.value}
                         </p>
@@ -807,25 +970,46 @@ export default function HomePage() {
       {/* Enhanced Styles */}
       <style jsx>{`
         @keyframes gradient-shift {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
+          0%,
+          100% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
         }
-        
+
         @keyframes float {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-20px) rotate(2deg); }
+          0%,
+          100% {
+            transform: translateY(0px) rotate(0deg);
+          }
+          50% {
+            transform: translateY(-20px) rotate(2deg);
+          }
         }
-        
+
         @keyframes breathe {
-          0%, 100% { transform: scale(1); }
-          50% { transform: scale(1.02); }
+          0%,
+          100% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.02);
+          }
         }
-        
+
         @keyframes glow {
-          0%, 100% { text-shadow: 0 0 20px rgba(40, 187, 164, 0.3); }
-          50% { text-shadow: 0 0 30px rgba(40, 187, 164, 0.6), 0 0 40px rgba(40, 187, 164, 0.3); }
+          0%,
+          100% {
+            text-shadow: 0 0 20px rgba(40, 187, 164, 0.3);
+          }
+          50% {
+            text-shadow: 0 0 30px rgba(40, 187, 164, 0.6),
+              0 0 40px rgba(40, 187, 164, 0.3);
+          }
         }
       `}</style>
     </div>
-  )
+  );
 }
