@@ -1,0 +1,402 @@
+"use client";
+
+import React from "react";
+import { useState, useEffect } from "react";
+import {
+  Play,
+  X,
+  Camera,
+  Music,
+  Film,
+  Calendar,
+  User,
+  Eye,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import Image from "next/image";
+import HeroSections from "@/components/heading";
+// import Header from "./components/header";
+
+// Define the Project type for better type safety
+type Project = {
+  id: number;
+  title: string;
+  titleEn: string;
+  description: string;
+  descriptionEn: string;
+  category: string;
+  client: string;
+  clientEn: string;
+  date: string;
+  images: string[];
+  featured: boolean;
+};
+
+export default function PortfolioPage() {
+  const [isVisible, setIsVisible] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  // SSR-safe default for waveHeights
+  const [waveHeights, setWaveHeights] = useState<number[]>(Array(12).fill(50));
+  const [vibrationTime, setVibrationTime] = useState(0); // SSR-safe default
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  function generateWaveHeights() {
+    return Array.from({ length: 12 }, () => Math.random() * 100 + 20);
+  }
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
+  useEffect(() => {
+    setWaveHeights(generateWaveHeights());
+    const interval = setInterval(() => {
+      setWaveHeights(generateWaveHeights());
+    }, 800);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setVibrationTime(Date.now());
+    }, 50);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/projects")
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch projects");
+        return res.json();
+      })
+      .then(setProjects)
+      .catch(console.error);
+  }, []);
+
+  const categories = [
+    {
+      id: "all",
+      name: "جميع الأعمال",
+      nameEn: "All Work",
+      color: "#28bca2",
+      icon: Eye,
+    },
+    {
+      id: "event-coverage",
+      name: "تغطية الفعاليات",
+      nameEn: "Event Coverage",
+      color: "#28bca2",
+      icon: Camera,
+    },
+    {
+      id: "audio-production",
+      name: "إنتاج صوتي",
+      nameEn: "Audio Production",
+      color: "#ff6b35",
+      icon: Music,
+    },
+    {
+      id: "visual-production",
+      name: "إنتاج مرئي",
+      nameEn: "Visual Production",
+      color: "#00bcd4",
+      icon: Film,
+    },
+  ];
+
+  const filteredProjects =
+    selectedCategory === "all"
+      ? projects
+      : projects.filter((project) => project.category === selectedCategory);
+
+  // FIX: Correct type for project argument
+  const openProjectModal = (project: Project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedProject(null);
+  };
+
+  return (
+    <div className="min-h-screen bg-white">
+
+
+      <HeroSections
+        title="Creative Media Solutions"
+        description="Professional event coverage, audio production, and visual storytelling that brings your vision to life."
+        image="/test.jpg" // replace with your actual image path
+      />
+
+      {/* Portfolio Section */}
+      <div className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          {/* Category Filter */}
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
+            {categories.map((category) => {
+              const Icon = category.icon;
+              const isActive = selectedCategory === category.id;
+
+              return (
+                <button
+                  key={category.id}
+                  onClick={() => setSelectedCategory(category.id)}
+                  className={`flex items-center gap-3 px-6 py-3 rounded-full transition-all duration-300 ${
+                    isActive
+                      ? "shadow-lg scale-105"
+                      : "hover:scale-102 hover:shadow-md"
+                  }`}
+                  style={{
+                    backgroundColor: isActive ? `${category.color}15` : "white",
+                    border: `2px solid ${
+                      isActive ? category.color : "#e5e7eb"
+                    }`,
+                    color: isActive ? category.color : "#6b7280",
+                  }}
+                >
+                  <Icon size={20} />
+                  <span className="font-medium text-right">
+                    {category.name}
+                  </span>
+                  <span className="text-sm opacity-70">{category.nameEn}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Projects Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredProjects.map((project, index) => {
+              const categoryInfo = categories.find(
+                (cat) => cat.id === project.category
+              );
+
+              return (
+                <Card
+                  key={project.id}
+                  className="group cursor-pointer transition-all duration-500 hover:scale-105 hover:shadow-2xl"
+                  onClick={() => openProjectModal(project)}
+                >
+                  <CardContent className="p-0">
+                    {/* Project Image */}
+                    <div className="relative h-64 overflow-hidden rounded-t-lg">
+                      <Image
+                        src={project.images[0] || "/placeholder.svg"}
+                        alt={project.title}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+
+                      {/* Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                      {/* Featured Badge */}
+                      {project.featured && (
+                        <div className="absolute top-4 right-4 bg-[#28bca2] text-white px-3 py-1 rounded-full text-sm font-medium">
+                          مميز
+                        </div>
+                      )}
+
+                      {/* Category Badge */}
+                      <div
+                        className="absolute top-4 left-4 px-3 py-1 rounded-full text-sm font-medium text-white"
+                        style={{ backgroundColor: categoryInfo?.color }}
+                      >
+                        {categoryInfo?.name}
+                      </div>
+
+                      {/* View Button */}
+                      <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center backdrop-blur-sm">
+                          <Eye size={20} className="text-gray-800" />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Project Info */}
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold text-gray-800 mb-2 text-right">
+                        {project.title}
+                      </h3>
+                      <p className="text-gray-600 mb-2">{project.titleEn}</p>
+                      <p className="text-gray-600 text-sm leading-relaxed mb-4 text-right line-clamp-2">
+                        {project.description}
+                      </p>
+
+                      {/* Project Meta */}
+                      <div className="flex items-center justify-between text-sm text-gray-500">
+                        <div className="flex items-center gap-2">
+                          <Calendar size={16} />
+                          <span>
+                            {new Date(project.date).toLocaleDateString("ar-SA")}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <User size={16} />
+                          <span className="text-right">{project.client}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+
+          {/* Empty State */}
+          {filteredProjects.length === 0 && (
+            <div className="text-center py-20">
+              <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Eye size={32} className="text-gray-400" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-800 mb-2">
+                لا توجد مشاريع
+              </h3>
+              <p className="text-gray-600">
+                لم يتم العثور على مشاريع في هذه الفئة
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Project Modal */}
+      {isModalOpen && selectedProject && (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between p-6 border-b">
+              <div>
+                <h2 className="text-2xl font-bold text-gray-800 text-right">
+                  {selectedProject.title}
+                </h2>
+                <p className="text-gray-600">{selectedProject.titleEn}</p>
+              </div>
+              <button
+                onClick={closeModal}
+                className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <div className="p-6">
+              {/* Project Images */}
+              <div className="grid md:grid-cols-2 gap-4 mb-6">
+                {selectedProject.images.map((image, index) => (
+                  <div
+                    key={index}
+                    className="relative h-64 rounded-xl overflow-hidden"
+                  >
+                    <Image
+                      src={image || "/placeholder.svg"}
+                      alt={`${selectedProject.title} ${index + 1}`}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
+
+              {/* Project Details */}
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h3 className="text-lg font-bold text-gray-800 mb-3 text-right">
+                    وصف المشروع
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed text-right mb-4">
+                    {selectedProject.description}
+                  </p>
+                  <p className="text-gray-500 leading-relaxed">
+                    {selectedProject.descriptionEn}
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-lg font-bold text-gray-800 mb-3">
+                    تفاصيل المشروع
+                  </h3>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3">
+                      <User size={20} className="text-[#28bca2]" />
+                      <div>
+                        <p className="font-medium text-right">
+                          {selectedProject.client}
+                        </p>
+                        <p className="text-sm text-gray-500">
+                          {selectedProject.clientEn}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Calendar size={20} className="text-[#28bca2]" />
+                      <p className="font-medium">
+                        {new Date(selectedProject.date).toLocaleDateString(
+                          "ar-SA"
+                        )}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      {React.createElement(
+                        categories.find(
+                          (cat) => cat.id === selectedProject.category
+                        )?.icon || Eye,
+                        {
+                          size: 20,
+                          style: {
+                            color: categories.find(
+                              (cat) => cat.id === selectedProject.category
+                            )?.color,
+                          },
+                        }
+                      )}
+                      <p className="font-medium text-right">
+                        {
+                          categories.find(
+                            (cat) => cat.id === selectedProject.category
+                          )?.name
+                        }
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* CSS Animations */}
+      <style jsx>{`
+        @keyframes wave-slide {
+          0% {
+            transform: translateX(-100px) scaleX(0.5);
+            opacity: 0.5;
+          }
+          50% {
+            transform: translateX(calc(100vw - 100px)) scaleX(1);
+            opacity: 1;
+          }
+          100% {
+            transform: translateX(calc(100vw + 100px)) scaleX(0.5);
+            opacity: 0.5;
+          }
+        }
+
+        .line-clamp-2 {
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+      `}</style>
+    </div>
+  );
+}
