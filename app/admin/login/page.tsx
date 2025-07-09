@@ -92,7 +92,7 @@ export default function AdminLoginPage() {
                   <div className="w-3 h-6 bg-[#28bca2] rounded-sm"></div>
                   <div className="w-2 h-4 bg-[#28bca2]/70 rounded-sm"></div>
                 </div>
-                <span className="text-gray-800 font-bold text-xl">SOUNDBEAT</span>
+                <span className="text-gray-800 font-bold text-xl">Track</span>
               </div>
               <h1 className="text-2xl font-bold text-gray-800 mb-2">Admin Login</h1>
               <p className="text-gray-600">Access the admin dashboard</p>

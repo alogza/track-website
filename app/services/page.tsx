@@ -359,7 +359,7 @@ export default function ServicesPage() {
       nameEn: "Ahmed Mohammed Al-Faisal",
       position: "Marketing Manager - Riyadh Development Company",
       rating: 5,
-      text: "I have worked with SOUNDBEAT on several projects and the results have always been amazing. A professional and creative team.",
+      text: "I have worked with Track on several projects and the results have always been amazing. A professional and creative team.",
       image: "/placeholder.svg?height=80&width=80&text=Ahmed",
       project: "Integrated Advertising Campaign",
     },

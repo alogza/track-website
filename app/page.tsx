@@ -418,14 +418,14 @@ export default function HomePage() {
                   {t.about.title}
                 </span>
               </h2>
-              <p className="text-xl text-gray-600 font-light max-w-3xl mx-auto leading-relaxed transition-all duration-500 hover:text-gray-700">
+              <p className="text-xl text-gray-600 font-light  max-w-3xl mx-auto leading-relaxed transition-all duration-500 hover:text-gray-700">
                 {t.about.subtitle}
               </p>
             </div>
 
             <div className="grid lg:grid-cols-2 gap-20 items-center mb-20">
               <div className="space-y-8">
-                <p className="text-gray-600 text-lg leading-relaxed mb-4 hover:text-gray-700">
+                <p className="text-gray-600 text-lg text-justify leading-relaxed mb-4 hover:text-gray-700">
                   {t.about.description}
                 </p>
 

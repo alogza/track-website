@@ -47,7 +47,7 @@ export default function Footer() {
                 <span className="text-[#28bca2]">اشترك في نشرتنا الإخبارية</span>
               </h3>
               <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-                احصل على آخر الأخبار والعروض الحصرية من SOUNDBEAT مباشرة في بريدك الإلكتروني
+                احصل على آخر الأخبار والعروض الحصرية من Track مباشرة في بريدك الإلكتروني
               </p>
               <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
                 <input
@@ -73,7 +73,7 @@ export default function Footer() {
                   <div className="w-3 h-6 bg-[#28bca2] rounded-sm"></div>
                   <div className="w-2 h-4 bg-[#28bca2]/70 rounded-sm"></div>
                 </div>
-                <span className="text-white font-bold text-xl">SOUNDBEAT</span>
+                <span className="text-white  font-extralight tracking-tighter leading-none animate-in fade-in-0 slide-in-from-bottom-6 duration-1000 delay-200 inline-block bg-gradient-to-r from-gray-900 via-[#28bba4] to-[#28bba4] bg-clip-text text-transparent text-2xl">Track</span>
               </div>
               <p className="text-gray-300 leading-relaxed mb-6 text-right">
                 نحن شركة رائدة في مجال الإنتاج الصوتي والمرئي وتغطية الفعاليات، نقدم خدمات متميزة بأعلى معايير الجودة
@@ -165,8 +165,8 @@ export default function Footer() {
                 <div className="flex items-start gap-3">
                   <Mail size={20} className="text-[#28bca2] mt-1 flex-shrink-0" />
                   <div className="text-right">
-                    <p className="text-gray-300">info@soundbeat.sa</p>
-                    <p className="text-gray-300">contact@soundbeat.sa</p>
+                    <p className="text-gray-300">info@track.sa</p>
+                    <p className="text-gray-300">contact@track.sa</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
@@ -186,12 +186,12 @@ export default function Footer() {
               </div>
 
               {/* CTA Button */}
-              <div className="mt-6">
+              {/* <div className="mt-6">
                 <Button className="w-full bg-[#28bca2] hover:bg-[#28bca2]/90 text-white py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105">
                   <span className="mr-2">ابدأ مشروعك الآن</span>
                   <Play size={16} fill="white" />
                 </Button>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -201,7 +201,7 @@ export default function Footer() {
           <div className="max-w-7xl mx-auto px-6 py-6">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               <div className="text-gray-400 text-sm text-center md:text-right">
-                <p>© 2024 SOUNDBEAT. جميع الحقوق محفوظة.</p>
+                <p>© 2024 Track. جميع الحقوق محفوظة.</p>
                 <p className="mt-1">All rights reserved.</p>
               </div>
               <div className="flex items-center space-x-6 text-sm">
