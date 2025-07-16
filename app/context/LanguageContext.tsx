@@ -16,21 +16,25 @@ const LanguageContext = createContext<{
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [language, setLanguageState] = useState<Language>("en");
+  const [hydrated, setHydrated] = useState(false);
 
-  // On mount, check localStorage for saved language
   useEffect(() => {
     const saved =
       typeof window !== "undefined" ? localStorage.getItem("lang") : null;
     if (saved === "en" || saved === "ar") setLanguageState(saved);
+    setHydrated(true);
   }, []);
 
-  // When language changes, save to localStorage
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
     if (typeof window !== "undefined") {
       localStorage.setItem("lang", lang);
     }
   };
+
+  if (!hydrated) {
+    return null; // Optionally, replace with a spinner
+  }
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage }}>
