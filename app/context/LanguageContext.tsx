@@ -1,6 +1,12 @@
 // context/LanguageContext.tsx
 "use client";
-import { createContext, useContext, useState, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
 
 type Language = "en" | "ar";
 const LanguageContext = createContext<{
@@ -9,7 +15,23 @@ const LanguageContext = createContext<{
 }>({ language: "en", setLanguage: () => {} });
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [language, setLanguage] = useState<Language>("en");
+  const [language, setLanguageState] = useState<Language>("en");
+
+  // On mount, check localStorage for saved language
+  useEffect(() => {
+    const saved =
+      typeof window !== "undefined" ? localStorage.getItem("lang") : null;
+    if (saved === "en" || saved === "ar") setLanguageState(saved);
+  }, []);
+
+  // When language changes, save to localStorage
+  const setLanguage = (lang: Language) => {
+    setLanguageState(lang);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("lang", lang);
+    }
+  };
+
   return (
     <LanguageContext.Provider value={{ language, setLanguage }}>
       {children}
