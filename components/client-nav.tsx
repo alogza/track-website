@@ -24,6 +24,6 @@ export default function ClientLayout({
     <div dir={dir}>
       <Navbar scrollY={scrollY} />
       {children}
-    </div>
-  );
+    </div>
+  );
 }

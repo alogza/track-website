@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import HeroSections from "@/components/heading";
+import { content } from "@/app/i18n";
+import { useLanguage } from "@/app/context/LanguageContext";
 
 // util to create random bar heights
 function generateWaveHeights() {
@@ -13,7 +15,9 @@ export default function HeroSection() {
   const [isVisible, setIsVisible] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [waveHeights, setWaveHeights] = useState(() => generateWaveHeights());
+  const { language } = useLanguage();
 
+  const t = content[language];
   useEffect(() => {
     setIsVisible(true);
   }, []);
@@ -38,8 +42,8 @@ export default function HeroSection() {
   return (
     <>
       <HeroSections
-        title="Creative Media Solutions"
-        description="Professional event coverage, audio production, and visual storytelling that brings your vision to life."
+        title=  {t.about.hero.title}
+        description={t.about.hero.subtitle}
         image="/hasan2.jpeg" // replace with your actual image path
       />
 
@@ -53,6 +57,8 @@ export default function HeroSection() {
 function AboutSection() {
   const [visibleSections, setVisibleSections] = useState<number[]>([]);
   const [imagePositions, setImagePositions] = useState([0, 1, 2]); // [mission_pos, vision_pos, values_pos]
+  const { language } = useLanguage();
+  const t = content[language];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -95,36 +101,24 @@ function AboutSection() {
     "/events.jpg", // Mission image
     "/image.jpg", // Values image
   ];
-
   const sections = [
     {
-      title: "Our Mission",
-      titleAr: "رسالتنا",
+      title: t.about.aboutSection.mission.title,
       color: "#28bca2",
-      description:
-        "We are committed to providing exceptional therapeutic nutrition services based on the latest scientific research. Our mission is to empower individuals to achieve their health goals through personalized nutrition programs and precise follow-up.",
-      descriptionAr:
-        "نحن ملتزمون بتقديم خدمات التغذية العلاجية المتميزة والمبنية على أحدث الأبحاث العلمية. رسالتنا هي تمكين الأفراد من تحقيق أهدافهم الصحية من خلال برامج غذائية مخصصة ومتابعة دقيقة.",
+      description: t.about.aboutSection.mission.description,
     },
     {
-      title: "Our Vision",
-      titleAr: "رؤيتنا",
+      title: t.about.aboutSection.vision.title,
       color: "#ff6b35",
-      description:
-        "To be the leading clinic in therapeutic nutrition in the region, known for excellence in providing innovative and comprehensive nutritional solutions. We aspire to be the first reference for individuals seeking to improve their health.",
-      descriptionAr:
-        "أن نكون العيادة الرائدة في مجال التغذية العلاجية في المنطقة، معروفة بتميزها في تقديم الحلول الغذائية المبتكرة والشاملة. نطمح إلى أن نكون المرجع الأول للأفراد الساعين لتحسين صحتهم.",
+      description: t.about.aboutSection.vision.description,
     },
     {
-      title: "Our Values",
-      titleAr: "قيمنا",
+      title: t.about.aboutSection.values.title,
       color: "#00bcd4",
-      description:
-        "Integrity, excellence, and personal care are the foundations of our work. We believe in treating each patient as a unique case and are committed to providing the highest levels of professional service.",
-      descriptionAr:
-        "النزاهة والتميز والرعاية الشخصية هي أسس عملنا. نؤمن بأهمية التعامل مع كل مريض كحالة فريدة، ونلتزم بتقديم أعلى مستويات الخدمة المهنية.",
+      description: t.about.aboutSection.values.description,
     },
   ];
+
 
   // Helper function to get which image should be displayed in which section
   const getImageForSection = (sectionIndex: number) => {
@@ -139,7 +133,7 @@ function AboutSection() {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-5xl md:text-7xl lg:text-9xl font-extralight text-gray-800 mb-4">
-            About{" "}
+            {t.about.aboutSection.heading}
             <span className="text-5xl md:text-7xl lg:text-9xl bg-gradient-to-r from-gray-900 via-[#28bba4] to-[#28bba4] bg-clip-text text-transparent">
               Track
             </span>
@@ -184,9 +178,7 @@ function AboutSection() {
                           <h3 className="text-3xl font-bold text-gray-800">
                             {section.title}
                           </h3>
-                          <p className="text-lg text-gray-600 font-arabic">
-                            {section.titleAr}
-                          </p>
+
                         </div>
                       </div>
                     </div>
