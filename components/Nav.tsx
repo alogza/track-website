@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { GlassCard } from "@/components/glass-card";
 import { Menu, X, Globe } from "lucide-react";
 import { useLanguage } from "@/app/context/LanguageContext";
-import { homepageContent } from "@/app/i18n";
+import { content } from "@/app/i18n";
 
 interface NavbarProps {
   scrollY: number;
@@ -21,7 +21,7 @@ const routes: { [key: string]: string } = {
 export function Navbar({ scrollY }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { language, setLanguage } = useLanguage();
-  const navItems = homepageContent[language].nav;
+  const navItems = content[language].nav;
 
   return (
     <nav className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-500">
