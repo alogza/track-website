@@ -34,7 +34,7 @@ import {
 import { ScrollProgress } from "@/components/scroll-progress";
 import { FloatingElements } from "@/components/floating-elements";
 import { ParticleField } from "@/components/particle-field";
-import { homepageContent } from "@/app/i18n";
+import { content } from "@/app/i18n";
 import { useLanguage } from "@/app/context/LanguageContext";
 
 // Add Project type for linter
@@ -104,7 +104,7 @@ export default function HomePage() {
       ? projects
       : projects.filter((project) => project.category === selectedCategory);
 
-  const t = homepageContent[language];
+  const t = content[language];
 
   const portfolioImages = [
     "/image.jpg",

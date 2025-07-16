@@ -1,5 +1,5 @@
 // i18n.ts
-export const homepageContent = {
+export const content = {
   en: {
     nav: {
       home: "Home",
