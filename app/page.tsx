@@ -192,7 +192,7 @@ export default function HomePage() {
                   animation: "gradient-shift 6s ease-in-out infinite, float 4s ease-in-out infinite",
                 }}
               > */}
-              {t.hero.title}
+              {t.home.hero.title}
               {/* </span> */}
             </h1>
 
@@ -212,12 +212,12 @@ export default function HomePage() {
               //   textShadow: "0 0 20px rgba(40, 187, 164, 0.3)",
               // }}
             >
-              {t.hero.slogan}
+              {t.home.hero.slogan}
             </p>
 
             {/* Description */}
             <p className="text-lg md:text-xl text-gray-600 mb-16 max-w-4xl mx-auto leading-relaxed font-light animate-in fade-in-0 slide-in-from-bottom-4 duration-1000 delay-800">
-              {t.hero.description}
+              {t.home.hero.subtitle}
             </p>
 
             {/* Enhanced CTA Buttons */}
@@ -244,7 +244,7 @@ export default function HomePage() {
             {/* Enhanced Scroll Hint */}
             <div className="flex flex-col items-center animate-bounce">
               <span className="text-gray-500 text-sm mb-3 font-light tracking-wide">
-                {t.hero.scrollHint}
+                {t.home.hero.cta}
               </span>
               <div className="w-6 h-10 border-2 border-[#28bba4]/50 rounded-full flex justify-center">
                 <div className="w-1 h-3 bg-[#28bba4] rounded-full mt-2 animate-bounce" />
@@ -266,22 +266,22 @@ export default function HomePage() {
             <div className="text-center mb-20">
               <h2 className="text-5xl md:text-7xl font-extralight text-gray-900 mb-8 tracking-tighter transition-all duration-700 hover:scale-105">
                 <span className="bg-gradient-to-r from-gray-900 to-[#28bba4] bg-clip-text text-transparent">
-                  {t.about.title}
+                  {t.home.discover.title}
                 </span>
               </h2>
               <p className="text-xl text-gray-600 font-light  max-w-3xl mx-auto leading-relaxed transition-all duration-500 hover:text-gray-700">
-                {t.about.subtitle}
+                {t.home.discover.description}
               </p>
             </div>
 
             <div className="grid lg:grid-cols-2 gap-20 items-center mb-20">
               <div className="space-y-8">
                 <p className="text-gray-600 text-lg text-justify leading-relaxed mb-4 hover:text-gray-700">
-                  {t.about.description}
+                  {t.home.discover.about}
                 </p>
 
                 <div className="grid grid-cols-2 gap-6">
-                  {t.about.stats.map((stat, index) => (
+                  {t.home.discover.stats.map((stat, index) => (
                     <GlassCard
                       key={index}
                       className={`p-8 text-center group hover:scale-105 transition-all duration-500 hover:shadow-2xl${
@@ -328,16 +328,16 @@ export default function HomePage() {
           <div className="text-center mb-20">
             <h2 className="text-5xl md:text-7xl font-extralight text-gray-900 mb-8 tracking-tighter transition-all duration-700 hover:scale-105">
               <span className="bg-gradient-to-r from-gray-900 to-[#28bba4] bg-clip-text text-transparent">
-                {t.services.title}
+                {t.home.services.title}
               </span>
             </h2>
             <p className="text-xl text-gray-600 font-light max-w-3xl mx-auto transition-all duration-500 hover:text-gray-700">
-              {t.services.subtitle}
+              {t.home.services.description}
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
-            {t.services.items.map((service, index) => (
+            {t.home.services.items.map((service, index) => (
               <div
                 key={index}
                 className="group hover:scale-105 transition-all duration-700 hover:shadow-2xl relative overflow-hidden rounded-3xl"
@@ -426,11 +426,11 @@ export default function HomePage() {
           <div className="text-center mb-20">
             <h2 className="text-5xl md:text-7xl font-extralight text-gray-900 mb-8 tracking-tighter transition-all duration-700 hover:scale-105">
               <span className="bg-gradient-to-r from-gray-900 to-[#28bba4] bg-clip-text text-transparent">
-                {t.portfolio.title}
+                {t.home.selectedWorks.title}
               </span>
             </h2>
             <p className="text-xl text-gray-600 font-light transition-all duration-500 hover:text-gray-700">
-              {t.portfolio.subtitle}
+              {t.home.selectedWorks.description}
             </p>
           </div>
 
@@ -525,16 +525,16 @@ export default function HomePage() {
           <div className="text-center mb-20">
             <h2 className="text-5xl md:text-7xl font-extralight text-gray-900 mb-8 tracking-tighter transition-all duration-700 hover:scale-105">
               <span className="bg-gradient-to-r from-gray-900 to-[#28bba4] bg-clip-text text-transparent">
-                {t.testimonials.title}
+                {t.home.testimonials.title}
               </span>
             </h2>
             <p className="text-xl text-gray-600 font-light transition-all duration-500 hover:text-gray-700">
-              {t.testimonials.subtitle}
+              {t.home.testimonials.description}
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {t.testimonials.items.map((testimonial, index) => (
+            {t.home.testimonials.items.map((testimonial, index) => (
               <GlassCard
                 key={index}
                 className={`p-8 text-center group hover:scale-105 transition-all duration-500 hover:shadow-2xl relative overflow-hidden${
@@ -546,7 +546,7 @@ export default function HomePage() {
                 <Quote className="h-10 w-10 text-[#28bba4] mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 relative z-10" />
 
                 <p className="text-gray-600 leading-relaxed font-light mb-6 italic relative z-10 transition-all duration-300 group-hover:text-gray-700">
-                  "{testimonial.text}"
+                  "{testimonial.quote}"
                 </p>
 
                 <div className="flex justify-center mb-4 relative z-10">
@@ -561,7 +561,7 @@ export default function HomePage() {
 
                 <div className="relative z-10">
                   <p className="font-medium text-gray-900 mb-1 transition-all duration-300">
-                    {testimonial.author}
+                    {testimonial.name}
                   </p>
                   <p className="text-gray-500 text-sm font-light transition-all duration-300 group-hover:text-gray-600">
                     {testimonial.role}
@@ -582,11 +582,11 @@ export default function HomePage() {
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-5xl md:text-7xl font-extralight text-gray-900 mb-8 tracking-tighter transition-all duration-700 hover:scale-105">
               <span className="bg-gradient-to-r from-gray-900 to-[#28bba4] bg-clip-text text-transparent">
-                {t.contact.title}
+                {t.home.contact.title}
               </span>
             </h2>
             <p className="text-xl text-gray-600 mb-20 font-light transition-all duration-500 hover:text-gray-700">
-              {t.contact.subtitle}
+              {t.home.contact.subtitle}
             </p>
 
             <div className="grid md:grid-cols-2 gap-16">
@@ -650,7 +650,7 @@ export default function HomePage() {
                   </div>
                   <Button className="w-full bg-gradient-to-r from-[#28bba4] to-[#28bba4]/80 hover:from-[#28bba4]/90 hover:to-[#28bba4]/70 text-white py-4 rounded-2xl font-medium tracking-wide transition-all duration-500 hover:scale-105 hover:shadow-2xl group">
                     <span className="flex items-center justify-center">
-                      {t.contact.cta}
+                      {t.home.contact.form.button}
                       <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                     </span>
                   </Button>

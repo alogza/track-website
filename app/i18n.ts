@@ -3,39 +3,32 @@ export const content = {
   en: {
     nav: {
       home: "Home",
-      about: "About",
       services: "Services",
       portfolio: "Portfolio",
-      process: "Process",
-      testimonials: "Testimonials",
+      about: "About",
       contact: "Contact",
-    },
+    },
+  home: {
     hero: {
-      badge: "Creative Artist & Designer",
       title: "Creative Excellence",
-      subtitle: "Where Art Meets Innovation",
-      slogan: "محتار؟ تراك تحدد لك المسار - كل المسارات تؤدي إلينا",
-      description:
-        "Crafting extraordinary visual experiences through the perfect harmony of creativity and technology. Every project is a journey of artistic discovery.",
-      cta: "Explore My Universe",
-      playDemo: "View Demo Reel",
-      scrollHint: "Discover More",
+      subtitle: "Crafting extraordinary visual experiences through the perfect harmony of creativity and technology. Every project is a journey of artistic discovery.",
+      cta: "Discover Now",
+      slogan: "ممتاز إبداعك يحدد لك المسار - كل المسارات تؤدي إلينا"
     },
-    about: {
+    discover: {
       title: "Discover Track",
-      subtitle: "Passionate about creating meaningful visual experiences",
-      description:
-        "With over a decade of experience in digital artistry, I specialize in transforming abstract concepts into compelling visual narratives that resonate with audiences worldwide.",
-      stats: [
+      description: "Passionate about creating meaningful visual experiences",
+            stats: [
         { number: "150+", label: "Projects Completed" },
         { number: "50+", label: "Happy Clients" },
         { number: "15", label: "Awards Won" },
         { number: "8", label: "Years Experience" },
       ],
+      about: "With over a decade of experience in digital artistry, I specialize in creating visually captivating experiences that resonate with audiences worldwide."
     },
     services: {
       title: "Services",
-      subtitle: "Comprehensive creative solutions tailored to your vision",
+      description: "Comprehensive creative solutions tailored to your vision",
       items: [
         {
           image: "/services.jpg",
@@ -83,97 +76,407 @@ export const content = {
         },
       ],
     },
-    process: {
-      title: "My Process",
-      subtitle: "A systematic approach to creative excellence",
-      steps: [
-        {
-          title: "Discovery",
-          desc: "Understanding your vision and goals",
-          icon: "🔍",
-        },
-        {
-          title: "Strategy",
-          desc: "Developing the creative roadmap",
-          icon: "🎯",
-        },
-        { title: "Design", desc: "Bringing concepts to life", icon: "🎨" },
-        { title: "Refinement", desc: "Perfecting every detail", icon: "✨" },
-        { title: "Delivery", desc: "Launching your vision", icon: "🚀" },
-      ],
-    },
-    portfolio: {
+    selectedWorks: {
       title: "Selected Works",
-      subtitle: "A curated collection of premium projects",
-      categories: ["All", "Branding", "Digital Art", "Web Design", "Motion"],
+      description: "A curated collection of premium projects",
     },
     testimonials: {
       title: "Client Testimonials",
-      subtitle: "What clients say about working with Track",
+      description: "What clients say about working with Track",
       items: [
-        {
-          text: "Track transformed our brand identity completely. The attention to detail and creative vision exceeded our expectations.",
-          author: "Sarah Johnson",
+{
+          quote: "Track transformed our brand identity completely. We achieved an distinct and creative vision exceeded our expectations.",
+          name: "Sarah Johnson",
           role: "CEO, Creative Studio",
-          rating: 5,
+          rating: 5
         },
-        {
-          text: "Working with Track was an incredible experience. The artistic vision and professional execution were outstanding.",
-          author: "Ahmed Al-Rashid",
+{
+          quote: "Working with Track was an incredible experience. The artistic vision and professional execution were outstanding.",
+          name: "Ahmed Al Rashid",
           role: "Marketing Director",
-          rating: 5,
+          rating: 5
         },
-        {
-          text: "The digital art pieces created by Track have become the centerpiece of our gallery. Truly exceptional work.",
-          author: "Maria Rodriguez",
+{
+          quote: "The stylistic process made by Track have become the cornerstone of our gallery. Truly exceptional work!",
+          name: "Maria Rodriguez",
           role: "Gallery Owner",
-          rating: 5,
-        },
-      ],
+          rating: 5
+        }
+      ]
     },
     contact: {
       title: "Let's Create Together",
       subtitle: "Ready to bring your vision to life?",
-      cta: "Start Your Project",
+      contactInfo: {
+        email: "hub@trak.com",
+        phone: "+1 (305) 123-4567",
+        location: "Creative District"
+      },
+      form: {
+        namePlaceholder: "Your Name",
+        emailPlaceholder: "Your Email",
+        messagePlaceholder: "Tell me about your project...",
+        button: "Start Your Project"
+      }
+    }
+  },
+  about: {
+    hero: {
+      title: "About Track",
+      subtitle: "Professional event coverage, audio production, and visual storytelling that brings your vision to life."
     },
+    aboutSection: {
+      heading: "About ",
+      mission: {
+        title: "Our Mission",
+        description: "We are committed to providing exceptional therapeutic nutrition services based on the latest scientific research. Our mission is to empower individuals to achieve their health goals through personalized nutrition programs and precise follow-up."
+      },
+      vision: {
+        title: "Our Vision",
+        description: "To be the leading clinic in therapeutic nutrition in the region, known for excellence in providing innovative and comprehensive nutritional solutions. We aspire to be the first reference for individuals seeking to improve their health."
+      },
+      values: {
+        title: "Our Values",
+        description: "Integrity, excellence, and personal care are the foundations of our work. We believe in treating each patient as a unique case and are committed to providing the highest levels of professional service."
+      }
+    }
+  },
+  services: {
+    hero: {
+      title: "Track Services",
+      subtitle: "Professional event coverage, audio production, and visual storytelling that brings your vision to life."
+    },
+    intro: {
+      heading: "Our Services",
+      description: "We offer a comprehensive range of media and production services with the highest international quality standards.",
+      featuresTitle: "Service Features",
+      tabs: [
+"Event Coverage",
+"Audio Production",
+"Visual Production"
+      ]
+    },
+    eventCoverage: {
+      title: "Event Coverage",
+      description: "We provide comprehensive coverage for all types of events with the latest technologies and advanced equipment with a professional team of photographers and technicians.",
+      features: [
+"Professional Photography",
+"4K Video Recording",
+"Live Event Streaming",
+"Instant Content Editing",
+"Integrated Specialist Team"
+      ],
+      stats: {
+        projects: "200+",
+        clients: "150+",
+        years: "8+"
+      },
+      cta: "Order Service Now",
+      details: [
+{
+          name: "Wedding Photography",
+          price: "From $1333"
+        },
+{
+          name: "Conferences & Seminars",
+          price: "From $800"
+        },
+{
+          name: "Sports Events",
+          price: "From $1066"
+        },
+{
+          name: "Music Concerts",
+          price: "From $1600"
+        },
+{
+          name: "Trade Shows",
+          price: "From $666"
+        },
+{
+          name: "Government Events",
+          price: "Upon Request"
+        }
+      ]
+    },
+    audioProduction: {
+      title: "Audio Production",
+      description: "We offer comprehensive audio production services from recording to mastering with world-class quality and professional standards in our studios equipped with the latest technology.",
+      features: [
+            "Advanced Recording Studio",
+            "World-Class Equipment",
+            "Integrated Music Production",
+            "Professional Sound Engineers",
+            "Mastering Services"
+      ],
+      stats: {
+        projects: "500+",
+        clients: "100+",
+        albums: "50+"
+      },
+      cta: "Order Service Now",
+      details: [
+{
+          name: "Song Recording",
+          price: "From $533"
+        },
+{
+          name: "Shilat Production",
+          price: "From $400"
+        },
+{
+          name: "Religious Anasheed",
+          price: "From $480"
+        },
+{
+          name: "Wedding Songs",
+          price: "From $666"
+        },
+{
+          name: "Operettas",
+          price: "From $1333"
+        },
+{
+          name: "Voice Over",
+          price: "From $133"
+        }
+      ]
+    },
+    visualProduction: {
+      title: "Visual Production",
+      description: "We excel in visual content production from commercials to documentaries and short films using the latest filming and editing technologies.",
+      features: [
+"Advanced Cinematic Cameras",
+"Integrated Editing Studio",
+"Multi-Platform Production",
+"Professional Directing Team",
+"Motion Graphics Techniques"
+      ],
+      stats: {
+        videos: "300+",
+        brands: "80+",
+        awards: "15+"
+      },
+      cta: "Order Service Now",
+      details: [
+{
+          name: "TV Commercials",
+          price: "From $2133"
+        },
+{
+          name: "Short Films",
+          price: "From $4000"
+        },
+{
+          name: "Digital Content",
+          price: "From $266"
+        },
+{
+          name: "Motion Graphics",
+          price: "From $800"
+        },
+{
+          name: "Documentaries",
+          price: "From $5333"
+        },
+{
+          name: "Educational Videos",
+          price: "From $533"
+        }
+      ]
+    },
+    additionalServices: {
+      title: "Additional Services",
+      description: "Specialized services to meet all your media needs",
+      items: [
+{
+          title: "Media Consulting",
+          features: [
+"Strategy: Planning",
+"Competitor Analysis",
+"Content Plans",
+"Performance Measurement"
+          ]
+        },
+{
+          title: "Graphic Design",
+          features: [
+"Logo Design",
+"Visual Identities",
+"Prints",
+"Digital Design"
+          ]
+        },
+{
+          title: "Social Media Management",
+          features: [
+"Content Management",
+"Audience Interaction",
+"Advertising Campaigns",
+"Analytics"
+          ]
+        },
+{
+          title: "Live Sound Services",
+          features: [
+"Advanced Sound Systems",
+"Specialized Technicians",
+"Installation and Operation",
+"Continuous Technical Support"
+          ]
+        }
+      ]
+    },
+    testimonials: {
+      title: "Our Clients Say",
+      subtitle: "What our clients say about our services",
+      items: [
+{
+          name: "Ahmed Mohammed Al-Faisal",
+          position: "Marketing Manager – Riyadh Development Company",
+          quote: "I have worked with Track on several projects and the results have always been amazing. A professional and creative team.",
+          rating: 5,
+          project: "Project: Integrated Advertising Campaign"
+        },
+{
+          name: "Fatima Al-Afi",
+          position: "Events Coordinator – Ministry of Culture",
+          quote: "The best company I have dealt with in the field of event coverage. Punctuality and exceptional quality.",
+          rating: 5,
+          project: "Project: Cultural Festival Coverage"
+        },
+{
+          name: "Khalid Al-Saad",
+          position: "Artist and Singer",
+          quote: "Their studios are equipped with the latest technology and the production team is very professional. I highly recommend them.",
+          rating: 5,
+          project: "Project: Music Album Production"
+        }
+      ]
+    }
+  },
+  portfolio: {
+    hero: {
+      title: "Track Protofolio",
+      subtitle: "Professional event coverage, audio production, and visual storytelling that brings your vision to life."
+    },
+    worksSection: {
+      heading: "Our Works",
+      filters: [
+"All Work",
+"Event Coverage",
+"Audio Production",
+"Visual Production"
+      ],
+      noProjects: {
+        title: "No Projects Found",
+        message: "We couldn't find any projects in this category."
+      }
+    }
+  },
+  contact: {
+    hero: {
+      title: "Contact Us",
+      subtitle: "We deliver top-tier audio-visual production services for events, advertisements, and beyond."
+    },
+    getInTouch: {
+      heading: "Get in Touch",
+      description: "We're here to help bring your vision to life.",
+      contactInfo: {
+        email: "hello@track.com",
+        phone: "+1 (555) 123-4567",
+        location: "Creative District"
+      },
+      form: {
+        namePlaceholder: "Your Name",
+        emailPlaceholder: "Your Email",
+        messagePlaceholder: "Tell me about your project...",
+        button: "Send"
+      }
+    },
+    socialMedia: {
+      title: "Follow Us On",
+      platforms: [
+"Facebook",
+"Instagram",
+"Twitter",
+"LinkedIn"
+      ]
+    },
+    mapSection: {
+      title: "Our Location on the Map",
+      placeholder: "Map Location - The map will be added soon"
+    },
+    quickContact: {
+      title: "Quick Contact",
+      description: "For immediate consultation or urgent appointment bookings",
+      methods: [
+{
+          type: "Call Now",
+          value: "771794448"
+        },
+{
+          type: "WhatsApp",
+          value: "Immediate contact"
+        }
+      ]
+    }
+  },
+  footer: {
+  companyName: "Creative Studio",
+  description: "We are a creative production company specializing in event coverage, audio-visual production, and photography services. Bringing your vision to life with professional excellence.",
+  contact: {
+    email: "hello@creativestudio.com",
+    phone: "+1 (555) 123-4567",
+    address: "123 Creative Street, Studio City, CA 90210"
+  },
+  servicesTitle: "Our Services",
+  services: {
+    event: "Event Coverage",
+    audio: "Audio Production",
+    visual: "Visual Production",
+    photo: "Photography"
+  },
+  quickLinksTitle: "Quick Links",
+  quickLinks: {
+    about: "About Us",
+    work: "Our Work",
+    clients: "Clients",
+    blog: "Blog"
+  }
+}
+
   },
   ar: {
     nav: {
       home: "الرئيسية",
-      about: "عنا",
       services: "الخدمات",
       portfolio: "المعرض",
-      process: "العملية",
-      testimonials: "التوصيات",
+      about: "عنا",
       contact: "التواصل",
-    },
+    },
+   home: {
     hero: {
-      badge: "فنان ومصمم إبداعي",
-      title: "التميز الإبداعي",
-      subtitle: "حيث يلتقي الفن بالابتكار",
-      slogan: "محتار؟ تراك تحدد لك المسار - كل المسارات تؤدي إلينا",
-      description:
-        "صناعة تجارب بصرية استثنائية من خلال التناغم المثالي بين الإبداع والتكنولوجيا. كل مشروع هو رحلة اكتشاف فني.",
-      cta: "استكشف عالمي",
-      playDemo: "مشاهدة العرض",
-      scrollHint: "اكتشف المزيد",
+      title: "التميّز الإبداعي",
+      subtitle: "نصنع تجارب بصرية استثنائية من خلال التناسق المثالي بين الإبداع والتكنولوجيا. كل مشروع هو رحلة اكتشاف فني.",
+      cta: "اكتشف الآن",
+      slogan: "ممتاز إبداعك يحدد لك المسار - كل المسارات تؤدي إلينا"
     },
-    about: {
-      title: "عن تراك",
-      subtitle: "شغوف بإنشاء تجارب بصرية ذات معنى",
-      description:
-        "مع أكثر من عقد من الخبرة في الفن الرقمي، أتخصص في تحويل المفاهيم المجردة إلى سرديات بصرية مقنعة تتردد صداها مع الجماهير في جميع أنحاء العالم.",
+    discover: {
+      title: "اكتشف تراك",
+      description: "شغوفون بصناعة تجارب بصرية ذات معنى",
       stats: [
         { number: "150+", label: "مشروع مكتمل" },
         { number: "50+", label: "عميل سعيد" },
         { number: "15", label: "جائزة" },
         { number: "8", label: "سنوات خبرة" },
       ],
+      about: "بخبرة تتجاوز العقد في الفن الرقمي، أختص في ابتكار تجارب بصرية جذابة تلامس الجمهور في جميع أنحاء العالم."
     },
     services: {
       title: "الخدمات",
-      subtitle: "حلول إبداعية شاملة مصممة خصيصاً لرؤيتك",
-      items: [
+      description: "حلول إبداعية شاملة مصممة خصيصًا لرؤيتك",
+     items: [
         {
           image: "/services.jpg",
           title: "هوية العلامة التجارية",
@@ -220,61 +523,378 @@ export const content = {
         },
       ],
     },
-    process: {
-      title: "عمليتي",
-      subtitle: "نهج منهجي للتميز الإبداعي",
-      steps: [
-        { title: "الاكتشاف", desc: "فهم رؤيتك وأهدافك", icon: "🔍" },
-        {
-          title: "الاستراتيجية",
-          desc: "تطوير خارطة الطريق الإبداعية",
-          icon: "🎯",
-        },
-        { title: "التصميم", desc: "إحياء المفاهيم", icon: "🎨" },
-        { title: "التحسين", desc: "إتقان كل التفاصيل", icon: "✨" },
-        { title: "التسليم", desc: "إطلاق رؤيتك", icon: "🚀" },
-      ],
-    },
-    portfolio: {
+    selectedWorks: {
       title: "أعمال مختارة",
-      subtitle: "مجموعة منتقاة من المشاريع المميزة",
-      categories: [
-        "الكل",
-        "العلامة التجارية",
-        "الفن الرقمي",
-        "تصميم الويب",
-        "الحركة",
-      ],
+      description: "مجموعة منتقاة من المشاريع المتميزة",
+      filters: [
+"جميع الأعمال",
+"تغطية الفعاليات",
+"الإنتاج البصري",
+"الإنتاج الصوتي",
+"التصوير الفوتوغرافي"
+      ]
     },
     testimonials: {
-      title: "توصيات العملاء",
-      subtitle: "ما يقوله العملاء عن العمل مع تراك",
+      title: "آراء العملاء",
+      description: "ماذا يقول العملاء عن العمل مع تراك",
       items: [
-        {
-          text: "تراك حول هوية علامتنا التجارية بالكامل. الاهتمام بالتفاصيل والرؤية الإبداعية فاقت توقعاتنا.",
-          author: "سارة جونسون",
-          role: "الرئيس التنفيذي، استوديو إبداعي",
-          rating: 5,
+{
+          quote: "تراك غيّرت هويتنا البصرية بالكامل. الرؤية التي حققناها كانت فريدة وتجاوزت توقعاتنا.",
+          name: "سارة جونسون",
+          role: "الرئيس التنفيذي، استوديو كرييتف",
+          rating: 5
         },
-        {
-          text: "العمل مع تراك كان تجربة لا تصدق. الرؤية الفنية والتنفيذ المهني كانا متميزين.",
-          author: "أحمد الراشد",
+{
+          quote: "العمل مع تراك كان تجربة رائعة. الرؤية الفنية والتنفيذ الاحترافي كانا مميزين للغاية.",
+          name: "أحمد الراشد",
           role: "مدير التسويق",
-          rating: 5,
+          rating: 5
         },
-        {
-          text: "القطع الفنية الرقمية التي أنشأها تراك أصبحت محور معرضنا. عمل استثنائي حقاً.",
-          author: "ماريا رودريغيز",
-          role: "مالكة المعرض",
-          rating: 5,
-        },
-      ],
+{
+          quote: "الأسلوب الفني الذي قدمته تراك أصبح حجر الأساس في معرضنا. عمل استثنائي بكل معنى الكلمة!",
+          name: "ماريا رودريغيز",
+          role: "مالكة معرض",
+          rating: 5
+        }
+      ]
     },
     contact: {
-      title: "لنبدع معاً",
-      subtitle: "مستعد لتحويل رؤيتك إلى واقع؟",
-      cta: "ابدأ مشروعك",
+      title: "لنبدع معًا",
+      subtitle: "هل أنت مستعد لتحويل رؤيتك إلى واقع؟",
+      contactInfo: {
+        email: "hub@trak.com",
+        phone: "+1 (305) 123-4567",
+        location: "حي الإبداع"
+      },
+      form: {
+        namePlaceholder: "اسمك",
+        emailPlaceholder: "بريدك الإلكتروني",
+        messagePlaceholder: "حدثنا عن مشروعك...",
+        button: "ابدأ مشروعك"
+      }
+    }
+  },
+  about: {
+    hero: {
+      title: "عن Track",
+      subtitle: "تغطية احترافية للفعاليات، إنتاج صوتي، وسرد بصري يجسّد رؤيتك إلى الواقع."
     },
+    aboutSection: {
+      heading: "عن "  ,
+      mission: {
+        title: "رسالتنا",
+        description: "نحن ملتزمون بتقديم خدمات تغذية علاجية استثنائية مبنية على أحدث الأبحاث العلمية. رسالتنا هي تمكين الأفراد من تحقيق أهدافهم الصحية من خلال برامج تغذية شخصية ومتابعة دقيقة."
+      },
+      vision: {
+        title: "رؤيتنا",
+        description: "أن نكون العيادة الرائدة في مجال التغذية العلاجية في المنطقة، والمعروفة بالتميز في تقديم حلول تغذية مبتكرة وشاملة. نطمح لأن نكون المرجع الأول للأفراد الراغبين في تحسين صحتهم."
+      },
+      values: {
+        title: "قيمُنا",
+        description: "النزاهة، والتميّز، والرعاية الشخصية هي أساس عملنا. نحن نؤمن بمعاملة كل مريض كحالة فريدة وملتزمون بتقديم أعلى مستويات الخدمة المهنية."
+      }
+    }
+  },
+  services: {
+    hero: {
+      title: "خدمات تراك",
+      subtitle: "تغطية احترافية للفعاليات، إنتاج صوتي، وسرد بصري يجسّد رؤيتك إلى الواقع."
+    },
+    intro: {
+      heading: "خدماتنا",
+      description: "نقدم مجموعة شاملة من خدمات الإعلام والإنتاج وفقًا لأعلى معايير الجودة الدولية.",
+      featuresTitle: "ميزات الخدمة",
+      tabs: [
+"تغطية الفعاليات",
+"الإنتاج الصوتي",
+"الإنتاج البصري"
+      ],
+      
+    },
+    eventCoverage: {
+      title: "تغطية الفعاليات",
+      description: "نوفّر تغطية شاملة لجميع أنواع الفعاليات باستخدام أحدث التقنيات والمعدات، من خلال فريق احترافي من المصورين والفنيين.",
+      features: [
+"تصوير فوتوغرافي احترافي",
+"تسجيل فيديو بدقة 4K",
+"بث مباشر للفعاليات",
+"تحرير فوري للمحتوى",
+"فريق متخصص متكامل"
+      ],
+      stats: {
+        projects: "200+",
+        clients: "150+",
+        years: "8+"
+      },
+      cta: "اطلب الخدمة الآن",
+      details: [
+{
+          name: "تصوير حفلات الزفاف",
+          price: "ابتداءً من $1333"
+        },
+{
+          name: "المؤتمرات والندوات",
+          price: "ابتداءً من $800"
+        },
+{
+          name: "الفعاليات الرياضية",
+          price: "ابتداءً من $1066"
+        },
+{
+          name: "الحفلات الموسيقية",
+          price: "ابتداءً من $1600"
+        },
+{
+          name: "المعارض التجارية",
+          price: "ابتداءً من $666"
+        },
+{
+          name: "الفعاليات الحكومية",
+          price: "حسب الطلب"
+        }
+      ]
+    },
+    audioProduction: {
+      title: "الإنتاج الصوتي",
+      description: "نقدم خدمات إنتاج صوتي شاملة من التسجيل إلى الماسترينغ بجودة عالمية، ضمن استوديوهات مجهزة بأحدث التقنيات.",
+      features: [
+"استوديو تسجيل متطور",
+"معدات صوتية عالمية",
+"إنتاج موسيقي متكامل",
+"مهندسو صوت محترفون",
+"خدمات الماسترينغ"
+      ],
+      stats: {
+        projects: "500+",
+        clients: "100+",
+        albums: "50+ "
+      },
+      cta: "اطلب الخدمة الآن",
+      details: [
+{
+          name: "تسجيل الأغاني",
+          price: "ابتداءً من $533"
+        },
+{
+          name: "إنتاج الشيلات",
+          price: "ابتداءً من $400"
+        },
+{
+          name: "إنتاج الأناشيد",
+          price: "ابتداءً من $480"
+        },
+{
+          name: "أغاني الزفاف",
+          price: "ابتداءً من $666"
+        },
+{
+          name: "الأوبريتات",
+          price: "ابتداءً من $1333"
+        },
+{
+          name: "التعليق الصوتي",
+          price: "ابتداءً من $133"
+        }
+      ]
+    },
+    visualProduction: {
+      title: "الإنتاج البصري",
+      description: "نتميز بإنتاج محتوى بصري احترافي من الإعلانات التجارية إلى الأفلام الوثائقية والقصيرة باستخدام أحدث تقنيات التصوير والمونتاج.",
+      features: [
+"كاميرات سينمائية متقدمة",
+"استوديو مونتاج متكامل",
+"إنتاج متعدد المنصات",
+"فريق إخراج محترف",
+"تقنيات الرسوم المتحركة"
+      ],
+      stats: {
+        videos: "300+ ",
+        brands: "+80",
+        awards: "15+"
+      },
+      cta: "اطلب الخدمة الآن",
+      details: [
+{
+          name: "الإعلانات التلفزيونية",
+          price: "ابتداءً من $2133"
+        },
+{
+          name: "الأفلام القصيرة",
+          price: "ابتداءً من $4000"
+        },
+{
+          name: "المحتوى الرقمي",
+          price: "ابتداءً من $266"
+        },
+{
+          name: "الرسوم المتحركة",
+          price: "ابتداءً من $800"
+        },
+{
+          name: "الأفلام الوثائقية",
+          price: "ابتداءً من $5333"
+        },
+{
+          name: "الفيديوهات التعليمية",
+          price: "ابتداءً من $533"
+        }
+      ]
+    },
+    additionalServices: {
+      title: "خدمات إضافية",
+      description: "خدمات متخصصة تلبي جميع احتياجاتك الإعلامية",
+      items: [
+{
+          title: "الاستشارات الإعلامية",
+          features: [
+"التخطيط الاستراتيجي",
+"تحليل المنافسين",
+"خطط المحتوى",
+"قياس الأداء"
+          ]
+        },
+{
+          title: "التصميم الجرافيكي",
+          features: [
+"تصميم الشعارات",
+"هويات بصرية",
+"مطبوعات",
+"تصميم رقمي"
+          ]
+        },
+{
+          title: "إدارة وسائل التواصل الاجتماعي",
+          features: [
+"إدارة المحتوى",
+"التفاعل مع الجمهور",
+"حملات إعلانية",
+"تحليلات"
+          ]
+        },
+{
+          title: "خدمات الصوت الحي",
+          features: [
+"أنظمة صوت متقدمة",
+"فنيون متخصصون",
+"التركيب والتشغيل",
+"دعم تقني مستمر"
+          ]
+        }
+      ]
+    },
+    testimonials: {
+      title: "ماذا يقول عملاؤنا",
+      subtitle: "آراء العملاء في خدماتنا",
+      items: [
+{
+          name: "أحمد محمد الفيصل",
+          position: "مدير تسويق – شركة تطوير الرياض",
+          quote: "عملت مع تراك في عدة مشاريع، وكانت النتائج مذهلة دائمًا. فريق محترف ومبدع.",
+          rating: 5,
+          project: "حملة إعلانية متكاملة"
+        },
+{
+          name: "فاطمة العفيف",
+          position: "منسقة فعاليات – وزارة الثقافة",
+          quote: "أفضل شركة تعاملت معها في تغطية الفعاليات. التزام بالمواعيد وجودة عالية.",
+          rating: 5,
+          project: "تغطية مهرجان ثقافي"
+        },
+{
+          name: "خالد السعد",
+          position: "فنان ومطرب",
+          quote: "الاستوديوهات مجهزة بأحدث التقنيات، وفريق الإنتاج محترف جدًا. أنصح بهم بشدة.",
+          rating: 5,
+          project: "إنتاج ألبوم موسيقي"
+        }
+      ]
+    }
+  },
+  portfolio: {
+    hero: {
+      title: "أعمال تراك",
+      subtitle: "تغطية احترافية للفعاليات، إنتاج صوتي، وسرد بصري يجسّد رؤيتك إلى الواقع."
+    },
+    worksSection: {
+      heading: "أعمالنا",
+      noProjects: {
+        title: "لا توجد مشاريع",
+        message: "لم يتم العثور على مشاريع في هذه الفئة."
+      }
+    }
+  },
+  contact: {
+    hero: {
+      title: "تواصل معنا",
+      subtitle: "نقدم خدمات إنتاج صوتي ومرئي عالية الجودة للمناسبات والإعلانات وأكثر."
+    },
+    getInTouch: {
+      heading: "ابقَ على تواصل",
+      description: "نحن هنا لمساعدتك في تحويل رؤيتك إلى واقع.",
+      contactInfo: {
+        email: "hello@track.com",
+        phone: "+1 (555) 123-4567",
+        location: "حي الإبداع"
+      },
+      form: {
+        namePlaceholder: "اسمك",
+        emailPlaceholder: "بريدك الإلكتروني",
+        messagePlaceholder: "حدثنا عن مشروعك...",
+        button: "إرسال"
+      }
+    },
+    socialMedia: {
+      title: "تابعنا على",
+      platforms: [
+"فيسبوك",
+"إنستغرام",
+"تويتر",
+"لينكدإن"
+      ]
+    },
+    mapSection: {
+      title: "موقعنا على الخريطة",
+      placeholder: "موقع الخريطة - سيتم إضافته قريبًا"
+    },
+    quickContact: {
+      title: "تواصل سريع",
+      description: "للاستشارات الفورية أو حجز المواعيد العاجلة",
+      methods: [
+{
+          type: "اتصل الآن",
+          value: "771794448"
+        },
+{
+          type: "واتساب",
+          value: "تواصل فوري"
+        }
+      ]
+    }
+  },
+  footer: {
+  companyName: "ستوديو الإبداع",
+  description: "نحن شركة إنتاج إبداعية متخصصة في تغطية الفعاليات، والإنتاج السمعي البصري، وخدمات التصوير الفوتوغرافي. نجعل رؤيتك تنبض بالحياة باحترافية عالية.",
+  contact: {
+    email: "hello@creativestudio.com",
+    phone: "+1 (555) 123-4567",
+    address: "123 شارع الإبداع، ستوديو سيتي، كاليفورنيا 90210"
+  },
+  servicesTitle: "خدماتنا",
+  services: {
+    event: "تغطية الفعاليات",
+    audio: "إنتاج صوتي",
+    visual: "إنتاج مرئي",
+    photo: "تصوير فوتوغرافي"
+  },
+  quickLinksTitle: "روابط سريعة",
+  quickLinks: {
+    about: "من نحن",
+    work: "أعمالنا",
+    clients: "العملاء",
+    blog: "المدونة"
+  }
+}
+
   },
 };
   
