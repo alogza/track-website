@@ -31,6 +31,7 @@ type Project = {
   date: string;
   images: string[];
   featured: boolean;
+  youtubeUrl?: string; // <-- Added
 };
 
 export default function PortfolioPage() {
@@ -184,6 +185,17 @@ export default function PortfolioPage() {
                 (cat) => cat.id === project.category
               );
 
+              // Find the first image file (not audio)
+              const firstImage = (project.images || []).find(
+                (img) =>
+                  img.match(/^https?:\/\/.+/) &&
+                  !img.match(/\.(mp3|wav|ogg|m4a|aac|flac|webm|oga)$/i)
+              );
+              // Find the first audio file
+              const firstAudio = (project.images || []).find((img) =>
+                img.match(/\.(mp3|wav|ogg|m4a|aac|flac|webm|oga)$/i)
+              );
+
               return (
                 <Card
                   key={project.id}
@@ -191,15 +203,21 @@ export default function PortfolioPage() {
                   onClick={() => openProjectModal(project)}
                 >
                   <CardContent className="p-0">
-                    {/* Project Image */}
-                    <div className="relative h-64 overflow-hidden rounded-t-lg">
-                      <Image
-                        src={project.images[0] || "/placeholder.svg"}
-                        alt={project.title}
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-110"
-                      />
-
+                    {/* Project Image or Audio Icon */}
+                    <div className="relative h-64 overflow-hidden rounded-t-lg flex items-center justify-center bg-white">
+                      {firstImage ? (
+                        <Image
+                          src={firstImage}
+                          alt={project.title}
+                          fill
+                          className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                      ) : (
+                        <Music
+                          size={64}
+                          className="text-[#28bca2] opacity-60"
+                        />
+                      )}
                       {/* Overlay */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
@@ -295,131 +313,226 @@ export default function PortfolioPage() {
 
             {/* Modal Content */}
             <div className="p-6">
-              {/* Project Images */}
-              <div className="grid md:grid-cols-2 gap-4 mb-6">
-                {selectedProject.images.map((image, index) => (
-                  <div
-                    key={index}
-                    className="relative h-64 rounded-xl overflow-hidden"
-                  >
-                    <Image
-                      src={image || "/placeholder.svg"}
-                      alt={`${selectedProject.title} ${index + 1}`}
-                      fill
-                      className="object-cover"
-                    />
+              {/* Project Images, Videos, and Audios */}
+              {/* 1. Photos Section */}
+              {selectedProject.images.some(
+                (img) =>
+                  img.match(/^https?:\/\/.+/) &&
+                  !img.match(/\.(mp3|wav|ogg|m4a|aac|flac|webm|oga)$/i)
+              ) && (
+                <div className="mb-8 flex flex-col items-center w-full">
+                  <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
+                    <Camera size={20} className="text-[#28bca2]" />
+                    Photos
+                  </h3>
+                  <div className="grid md:grid-cols-2 gap-4 w-full max-w-3xl justify-center">
+                    {selectedProject.images
+                      .filter(
+                        (img) =>
+                          img.match(/^https?:\/\/.+/) &&
+                          !img.match(/\.(mp3|wav|ogg|m4a|aac|flac|webm|oga)$/i)
+                      )
+                      .map((image, index) => (
+                        <div
+                          key={index}
+                          className="relative h-64 rounded-xl overflow-hidden flex justify-center items-center"
+                        >
+                          <Image
+                            src={image || "/placeholder.svg"}
+                            alt={`${selectedProject.title} ${index + 1}`}
+                            fill
+                            className="object-cover border-4 border-gray-200 rounded-2xl shadow-sm"
+                          />
+                        </div>
+                      ))}
                   </div>
-                ))}
-              </div>
-
-           
-{/* Project Details */}
-<div className="grid lg:grid-cols-2 gap-8">
-  {/* Project Description */}
-  <div className="bg-gradient-to-br from-white to-gray-50 rounded-2xl p-8 shadow-lg border border-gray-100">
-    <div className="mb-6">
-      <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-        <div className="w-1 h-8 bg-gradient-to-b from-[#28bca2] to-[#20a085] rounded-full"></div>
-        Project Overview
-      </h3>
-    </div>
-    
-    <div className="space-y-6">
-      <div className="relative pl-4">
-        <p className="text-gray-700 leading-relaxed text-lg font-medium">
-          {selectedProject.description}
-        </p>
-        <div className="absolute left-0 top-0 w-0.5 h-full bg-gradient-to-b from-[#28bca2]/20 to-transparent"></div>
-      </div>
-      
-      <div className="pt-4 border-t border-gray-100">
-        <p className="text-gray-600 leading-relaxed">
-          {selectedProject.descriptionEn}
-        </p>
-      </div>
-    </div>
-  </div>
-
-  {/* Project Details */}
-  <div className="bg-gradient-to-br from-white to-gray-50 rounded-2xl p-8 shadow-lg border border-gray-100">
-    <div className="mb-6">
-      <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-        <div className="w-1 h-8 bg-gradient-to-b from-[#28bca2] to-[#20a085] rounded-full"></div>
-        Project Details
-      </h3>
-    </div>
-    
-    <div className="space-y-6">
-      {/* Client Information */}
-      <div className="group hover:bg-white/50 p-4 rounded-xl transition-all duration-200">
-        <div className="flex items-start gap-4">
-          <div className="flex-shrink-0">
-            <div className="w-12 h-12 bg-gradient-to-br from-[#28bca2] to-[#20a085] rounded-xl flex items-center justify-center shadow-lg">
-              <User size={20} className="text-white" />
-            </div>
-          </div>
-          <div className="flex-1">
-            <p className="font-semibold text-gray-900 text-lg mb-1">
-              {selectedProject.client}
-            </p>
-            <p className="text-gray-600 text-sm">
-              {selectedProject.clientEn}
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Project Date */}
-      <div className="group hover:bg-white/50 p-4 rounded-xl transition-all duration-200">
-        <div className="flex items-center gap-4">
-          <div className="flex-shrink-0">
-            <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
-              <Calendar size={20} className="text-white" />
-            </div>
-          </div>
-          <div className="flex-1">
-            <p className="font-semibold text-gray-900 text-lg">
-              {new Date(selectedProject.date).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long", 
-                day: "numeric"
-              })}
-            </p>
-            <p className="text-gray-600 text-sm">Project Date</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Category */}
-      <div className="group hover:bg-white/50 p-4 rounded-xl transition-all duration-200">
-        <div className="flex items-center gap-4">
-          <div className="flex-shrink-0">
-            <div 
-              className="w-12 h-12 rounded-xl flex items-center justify-center shadow-lg"
-              style={{
-                background: `linear-gradient(135deg, ${categories.find(cat => cat.id === selectedProject.category)?.color || "#28bca2"}, ${(categories.find(cat => cat.id === selectedProject.category)?.color || "#28bca2")}dd)`
-              }}
-            >
-              {React.createElement(
-                categories.find(cat => cat.id === selectedProject.category)?.icon || Eye,
-                {
-                  size: 20,
-                  className: "text-white"
-                }
+                </div>
               )}
-            </div>
-          </div>
-          <div className="flex-1">
-            <p className="font-semibold text-gray-900 text-lg">
-              {categories.find(cat => cat.id === selectedProject.category)?.name}
-            </p>
-            <p className="text-gray-600 text-sm">Project Category</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
+              {/* 2. Videos Section (YouTube) */}
+              {selectedProject.youtubeUrl && (
+                <div className="mb-8 flex flex-col items-center">
+                  <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
+                    <Film size={20} className="text-[#28bca2]" />
+                    Videos
+                  </h3>
+                  <div className="w-full max-w-2xl bg-white rounded-2xl shadow-xl border border-gray-100 p-4 flex justify-center">
+                    <div className="w-full aspect-video">
+                      <iframe
+                        width="100%"
+                        height="100%"
+                        src={selectedProject.youtubeUrl.replace(
+                          "watch?v=",
+                          "embed/"
+                        )}
+                        title="YouTube video player"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                        className="rounded-xl w-full h-full min-h-[200px] max-h-[420px]"
+                        style={{ background: "#000" }}
+                      ></iframe>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* 3. Audios Section */}
+              {selectedProject.images.some((img) =>
+                img.match(/\.(mp3|wav|ogg|m4a|aac|flac|webm|oga)$/i)
+              ) && (
+                <div className="mb-8 flex flex-col items-center w-full">
+                  <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
+                    <Music size={20} className="text-[#28bca2]" />
+                    Audios
+                  </h3>
+                  <div className="grid md:grid-cols-2 gap-4 w-full max-w-3xl justify-center">
+                    {selectedProject.images
+                      .filter((img) =>
+                        img.match(/\.(mp3|wav|ogg|m4a|aac|flac|webm|oga)$/i)
+                      )
+                      .map((audio, idx) => (
+                        <div
+                          key={idx}
+                          className="flex flex-col items-center justify-center h-64 bg-gray-50 border-4 border-gray-200 rounded-2xl shadow-sm"
+                        >
+                          <Music size={48} className="text-[#28bca2] mb-4" />
+                          <audio controls className="w-full max-w-xs">
+                            <source src={audio} />
+                            Your browser does not support the audio element.
+                          </audio>
+                        </div>
+                      ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Project Details */}
+              <div className="grid lg:grid-cols-2 gap-8">
+                {/* Project Description */}
+                <div className="bg-gradient-to-br from-white to-gray-50 rounded-2xl p-8 shadow-lg border border-gray-100">
+                  <div className="mb-6">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
+                      <div className="w-1 h-8 bg-gradient-to-b from-[#28bca2] to-[#20a085] rounded-full"></div>
+                      Project Overview
+                    </h3>
+                  </div>
+
+                  <div className="space-y-6">
+                    <div className="relative pl-4">
+                      <p className="text-gray-700 leading-relaxed text-lg font-medium">
+                        {selectedProject.description}
+                      </p>
+                      <div className="absolute left-0 top-0 w-0.5 h-full bg-gradient-to-b from-[#28bca2]/20 to-transparent"></div>
+                    </div>
+
+                    <div className="pt-4 border-t border-gray-100">
+                      <p className="text-gray-600 leading-relaxed">
+                        {selectedProject.descriptionEn}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Project Details */}
+                <div className="bg-gradient-to-br from-white to-gray-50 rounded-2xl p-8 shadow-lg border border-gray-100">
+                  <div className="mb-6">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
+                      <div className="w-1 h-8 bg-gradient-to-b from-[#28bca2] to-[#20a085] rounded-full"></div>
+                      Project Details
+                    </h3>
+                  </div>
+                  <div className="space-y-6">
+                    {/* Client Information */}
+                    <div className="group hover:bg-white/50 p-4 rounded-xl transition-all duration-200">
+                      <div className="flex items-start gap-4">
+                        <div className="flex-shrink-0">
+                          <div className="w-12 h-12 bg-gradient-to-br from-[#28bca2] to-[#20a085] rounded-xl flex items-center justify-center shadow-lg">
+                            <User size={20} className="text-white" />
+                          </div>
+                        </div>
+                        <div className="flex-1">
+                          <p className="font-semibold text-gray-900 text-lg mb-1">
+                            {selectedProject.client}
+                          </p>
+                          <p className="text-gray-600 text-sm">
+                            {selectedProject.clientEn}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Project Date */}
+                    <div className="group hover:bg-white/50 p-4 rounded-xl transition-all duration-200">
+                      <div className="flex items-center gap-4">
+                        <div className="flex-shrink-0">
+                          <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+                            <Calendar size={20} className="text-white" />
+                          </div>
+                        </div>
+                        <div className="flex-1">
+                          <p className="font-semibold text-gray-900 text-lg">
+                            {new Date(selectedProject.date).toLocaleDateString(
+                              "en-US",
+                              {
+                                year: "numeric",
+                                month: "long",
+                                day: "numeric",
+                              }
+                            )}
+                          </p>
+                          <p className="text-gray-600 text-sm">Project Date</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Category */}
+                    <div className="group hover:bg-white/50 p-4 rounded-xl transition-all duration-200">
+                      <div className="flex items-center gap-4">
+                        <div className="flex-shrink-0">
+                          <div
+                            className="w-12 h-12 rounded-xl flex items-center justify-center shadow-lg"
+                            style={{
+                              background: `linear-gradient(135deg, ${
+                                categories.find(
+                                  (cat) => cat.id === selectedProject.category
+                                )?.color || "#28bca2"
+                              }, ${
+                                categories.find(
+                                  (cat) => cat.id === selectedProject.category
+                                )?.color || "#28bca2"
+                              }dd)`,
+                            }}
+                          >
+                            {React.createElement(
+                              categories.find(
+                                (cat) => cat.id === selectedProject.category
+                              )?.icon || Eye,
+                              {
+                                size: 20,
+                                className: "text-white",
+                              }
+                            )}
+                          </div>
+                        </div>
+                        <div className="flex-1">
+                          <p className="font-semibold text-gray-900 text-lg">
+                            {
+                              categories.find(
+                                (cat) => cat.id === selectedProject.category
+                              )?.name
+                            }
+                          </p>
+                          <p className="text-gray-600 text-sm">
+                            Project Category
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                    
+                </div>
+              </div>
             </div>
           </div>
         </div>
