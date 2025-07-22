@@ -34,14 +34,25 @@ import {
 import { ScrollProgress } from "@/components/scroll-progress";
 import { FloatingElements } from "@/components/floating-elements";
 import { ParticleField } from "@/components/particle-field";
+import { content } from "@/app/i18n";
+import { useLanguage } from "@/app/context/LanguageContext";
+
+// Add Project type for linter
+
+type Project = {
+  id: string;
+  title?: string;
+  category?: string;
+  images?: string[];
+};
 
 export default function HomePage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [language, setLanguage] = useState<"en" | "ar">("en");
   const [scrollY, setScrollY] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [projects, setProjects] = useState<Project[]>([]);
-
+  const { language } = useLanguage();
+  
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", handleScroll);
@@ -92,285 +103,6 @@ export default function HomePage() {
     selectedCategory === "all"
       ? projects
       : projects.filter((project) => project.category === selectedCategory);
-
-  const content = {
-    en: {
-      nav: {
-        home: "Home",
-        about: "About",
-        services: "Services",
-        portfolio: "Portfolio",
-        process: "Process",
-        testimonials: "Testimonials",
-        contact: "Contact",
-      },
-      hero: {
-        badge: "Creative Artist & Designer",
-        title: "Creative Excellence",
-        subtitle: "Where Art Meets Innovation",
-        slogan: "محتار؟ تراك تحدد لك المسار - كل المسارات تؤدي إلينا",
-        description:
-          "Crafting extraordinary visual experiences through the perfect harmony of creativity and technology. Every project is a journey of artistic discovery.",
-        cta: "Explore My Universe",
-        playDemo: "View Demo Reel",
-        scrollHint: "Discover More",
-      },
-      about: {
-        title: "Discover Track",
-        subtitle: "Passionate about creating meaningful visual experiences",
-        description:
-          "With over a decade of experience in digital artistry, I specialize in transforming abstract concepts into compelling visual narratives that resonate with audiences worldwide.",
-        stats: [
-          { number: "150+", label: "Projects Completed" },
-          { number: "50+", label: "Happy Clients" },
-          { number: "15", label: "Awards Won" },
-          { number: "8", label: "Years Experience" },
-        ],
-      },
-      services: {
-        title: "Services",
-        subtitle: "Comprehensive creative solutions tailored to your vision",
-        items: [
-          {
-            image: "/services.jpg",
-            title: "Brand Identity",
-            desc: "Complete visual identity systems that capture your brand's essence",
-            features: [
-              "Logo & Visual Identity",
-              "Brand Strategy & Guidelines",
-              "Print & Digital Applications",
-              "Brand Positioning",
-            ],
-          },
-          {
-            image: "/services.jpg",
-            title: "Digital Art",
-            desc: "Contemporary digital artwork and interactive experiences",
-            features: [
-              "Digital Illustrations",
-              "Motion Graphics & Animation",
-              "Interactive Media Design",
-              "NFT Art Creation",
-            ],
-          },
-          {
-            image: "/services.jpg",
-            title: "Creative Direction",
-            desc: "Strategic creative guidance for your projects and campaigns",
-            features: [
-              "Art Direction",
-              "Creative Campaign Strategy",
-              "Visual Storytelling",
-              "Creative Consulting",
-            ],
-          },
-          {
-            image: "/services.jpg",
-            title: "Visual Consulting",
-            desc: "Expert design consultation and creative problem-solving",
-            features: [
-              "Design System Audit",
-              "Creative Workshops",
-              "Strategic Visual Planning",
-              "Brand Evolution",
-            ],
-          },
-        ],
-      },
-      process: {
-        title: "My Process",
-        subtitle: "A systematic approach to creative excellence",
-        steps: [
-          {
-            title: "Discovery",
-            desc: "Understanding your vision and goals",
-            icon: "🔍",
-          },
-          {
-            title: "Strategy",
-            desc: "Developing the creative roadmap",
-            icon: "🎯",
-          },
-          { title: "Design", desc: "Bringing concepts to life", icon: "🎨" },
-          { title: "Refinement", desc: "Perfecting every detail", icon: "✨" },
-          { title: "Delivery", desc: "Launching your vision", icon: "🚀" },
-        ],
-      },
-      portfolio: {
-        title: "Selected Works",
-        subtitle: "A curated collection of premium projects",
-        categories: ["All", "Branding", "Digital Art", "Web Design", "Motion"],
-      },
-      testimonials: {
-        title: "Client Testimonials",
-        subtitle: "What clients say about working with Track",
-        items: [
-          {
-            text: "Track transformed our brand identity completely. The attention to detail and creative vision exceeded our expectations.",
-            author: "Sarah Johnson",
-            role: "CEO, Creative Studio",
-            rating: 5,
-          },
-          {
-            text: "Working with Track was an incredible experience. The artistic vision and professional execution were outstanding.",
-            author: "Ahmed Al-Rashid",
-            role: "Marketing Director",
-            rating: 5,
-          },
-          {
-            text: "The digital art pieces created by Track have become the centerpiece of our gallery. Truly exceptional work.",
-            author: "Maria Rodriguez",
-            role: "Gallery Owner",
-            rating: 5,
-          },
-        ],
-      },
-      contact: {
-        title: "Let's Create Together",
-        subtitle: "Ready to bring your vision to life?",
-        cta: "Start Your Project",
-      },
-    },
-    ar: {
-      nav: {
-        home: "الرئيسية",
-        about: "عنا",
-        services: "الخدمات",
-        portfolio: "المعرض",
-        process: "العملية",
-        testimonials: "التوصيات",
-        contact: "التواصل",
-      },
-      hero: {
-        badge: "فنان ومصمم إبداعي",
-        title: "التميز الإبداعي",
-        subtitle: "حيث يلتقي الفن بالابتكار",
-        slogan: "محتار؟ تراك تحدد لك المسار - كل المسارات تؤدي إلينا",
-        description:
-          "صناعة تجارب بصرية استثنائية من خلال التناغم المثالي بين الإبداع والتكنولوجيا. كل مشروع هو رحلة اكتشاف فني.",
-        cta: "استكشف عالمي",
-        playDemo: "مشاهدة العرض",
-        scrollHint: "اكتشف المزيد",
-      },
-      about: {
-        title: "عن تراك",
-        subtitle: "شغوف بإنشاء تجارب بصرية ذات معنى",
-        description:
-          "مع أكثر من عقد من الخبرة في الفن الرقمي، أتخصص في تحويل المفاهيم المجردة إلى سرديات بصرية مقنعة تتردد صداها مع الجماهير في جميع أنحاء العالم.",
-        stats: [
-          { number: "150+", label: "مشروع مكتمل" },
-          { number: "50+", label: "عميل سعيد" },
-          { number: "15", label: "جائزة" },
-          { number: "8", label: "سنوات خبرة" },
-        ],
-      },
-      services: {
-        title: "الخدمات",
-        subtitle: "حلول إبداعية شاملة مصممة خصيصاً لرؤيتك",
-        items: [
-          {
-            image: "/services.jpg",
-            title: "هوية العلامة التجارية",
-            desc: "أنظمة الهوية البصرية الكاملة التي تلتقط جوهر علامتك التجارية",
-            features: [
-              "تصميم الشعار والهوية البصرية",
-              "استراتيجية العلامة التجارية",
-              "التطبيقات المطبوعة والرقمية",
-              "تموضع العلامة التجارية",
-            ],
-          },
-          {
-            image: "/services.jpg",
-            title: "الفن الرقمي",
-            desc: "أعمال فنية رقمية معاصرة وتجارب تفاعلية",
-            features: [
-              "الرسوم الرقمية",
-              "الرسوم المتحركة والحركة",
-              "تصميم الوسائط التفاعلية",
-              "إنشاء فن NFT",
-            ],
-          },
-          {
-            image: "/services.jpg",
-            title: "التوجيه الإبداعي",
-            desc: "إرشاد إبداعي استراتيجي لمشاريعك وحملاتك",
-            features: [
-              "التوجيه الفني",
-              "استراتيجية الحملة الإبداعية",
-              "السرد البصري",
-              "الاستشارة الإبداعية",
-            ],
-          },
-          {
-            image: "/services.jpg",
-            title: "الاستشارة البصرية",
-            desc: "استشارة تصميم متخصصة وحل المشاكل الإبداعية",
-            features: [
-              "تدقيق نظام التصميم",
-              "ورش العمل الإبداعية",
-              "التخطيط البصري الاستراتيجي",
-              "تطوير العلامة التجارية",
-            ],
-          },
-        ],
-      },
-      process: {
-        title: "عمليتي",
-        subtitle: "نهج منهجي للتميز الإبداعي",
-        steps: [
-          { title: "الاكتشاف", desc: "فهم رؤيتك وأهدافك", icon: "🔍" },
-          {
-            title: "الاستراتيجية",
-            desc: "تطوير خارطة الطريق الإبداعية",
-            icon: "🎯",
-          },
-          { title: "التصميم", desc: "إحياء المفاهيم", icon: "🎨" },
-          { title: "التحسين", desc: "إتقان كل التفاصيل", icon: "✨" },
-          { title: "التسليم", desc: "إطلاق رؤيتك", icon: "🚀" },
-        ],
-      },
-      portfolio: {
-        title: "أعمال مختارة",
-        subtitle: "مجموعة منتقاة من المشاريع المميزة",
-        categories: [
-          "الكل",
-          "العلامة التجارية",
-          "الفن الرقمي",
-          "تصميم الويب",
-          "الحركة",
-        ],
-      },
-      testimonials: {
-        title: "توصيات العملاء",
-        subtitle: "ما يقوله العملاء عن العمل مع تراك",
-        items: [
-          {
-            text: "تراك حول هوية علامتنا التجارية بالكامل. الاهتمام بالتفاصيل والرؤية الإبداعية فاقت توقعاتنا.",
-            author: "سارة جونسون",
-            role: "الرئيس التنفيذي، استوديو إبداعي",
-            rating: 5,
-          },
-          {
-            text: "العمل مع تراك كان تجربة لا تصدق. الرؤية الفنية والتنفيذ المهني كانا متميزين.",
-            author: "أحمد الراشد",
-            role: "مدير التسويق",
-            rating: 5,
-          },
-          {
-            text: "القطع الفنية الرقمية التي أنشأها تراك أصبحت محور معرضنا. عمل استثنائي حقاً.",
-            author: "ماريا رودريغيز",
-            role: "مالكة المعرض",
-            rating: 5,
-          },
-        ],
-      },
-      contact: {
-        title: "لنبدع معاً",
-        subtitle: "مستعد لتحويل رؤيتك إلى واقع؟",
-        cta: "ابدأ مشروعك",
-      },
-    },
-  };
 
   const t = content[language];
 
@@ -452,7 +184,7 @@ export default function HomePage() {
             </div> */}
 
             {/* Revolutionary Title */}
-            <h1 className="text-5xl md:text-7xl lg:text-9xl font-extralight mb-8 tracking-tighter leading-none animate-in fade-in-0 slide-in-from-bottom-6 duration-1000 delay-200 inline-block bg-gradient-to-r from-gray-900 via-[#28bba4] to-[#28bba4] bg-clip-text text-transparent">
+            <h1 className={`text-5xl md:text-7xl  font-extralight mb-8 tracking-tighter leading-none animate-in fade-in-0 slide-in-from-bottom-6 duration-1000 delay-200 inline-block bg-gradient-to-r from-gray-900 via-[#28bba4] to-[#28bba4] bg-clip-text text-transparent ${language === "ar" ? "lg:text-8xl h-[120px]" : "lg:text-9xl"}`}>
               {/* <span
                 className="inline-block bg-gradient-to-r from-gray-900 via-[#28bba4] to-[#28bba4] bg-clip-text text-transparent"
                 style={{
@@ -460,7 +192,7 @@ export default function HomePage() {
                   animation: "gradient-shift 6s ease-in-out infinite, float 4s ease-in-out infinite",
                 }}
               > */}
-              {t.hero.title}
+              {t.home.hero.title}
               {/* </span> */}
             </h1>
 
@@ -480,12 +212,12 @@ export default function HomePage() {
               //   textShadow: "0 0 20px rgba(40, 187, 164, 0.3)",
               // }}
             >
-              {t.hero.slogan}
+              {t.home.hero.slogan}
             </p>
 
             {/* Description */}
             <p className="text-lg md:text-xl text-gray-600 mb-16 max-w-4xl mx-auto leading-relaxed font-light animate-in fade-in-0 slide-in-from-bottom-4 duration-1000 delay-800">
-              {t.hero.description}
+              {t.home.hero.subtitle}
             </p>
 
             {/* Enhanced CTA Buttons */}
@@ -512,7 +244,7 @@ export default function HomePage() {
             {/* Enhanced Scroll Hint */}
             <div className="flex flex-col items-center animate-bounce">
               <span className="text-gray-500 text-sm mb-3 font-light tracking-wide">
-                {t.hero.scrollHint}
+                {t.home.hero.cta}
               </span>
               <div className="w-6 h-10 border-2 border-[#28bba4]/50 rounded-full flex justify-center">
                 <div className="w-1 h-3 bg-[#28bba4] rounded-full mt-2 animate-bounce" />
@@ -534,26 +266,27 @@ export default function HomePage() {
             <div className="text-center mb-20">
               <h2 className="text-5xl md:text-7xl font-extralight text-gray-900 mb-8 tracking-tighter transition-all duration-700 hover:scale-105">
                 <span className="bg-gradient-to-r from-gray-900 to-[#28bba4] bg-clip-text text-transparent">
-                  {t.about.title}
+                  {t.home.discover.title}
                 </span>
               </h2>
               <p className="text-xl text-gray-600 font-light  max-w-3xl mx-auto leading-relaxed transition-all duration-500 hover:text-gray-700">
-                {t.about.subtitle}
+                {t.home.discover.description}
               </p>
             </div>
 
             <div className="grid lg:grid-cols-2 gap-20 items-center mb-20">
               <div className="space-y-8">
                 <p className="text-gray-600 text-lg text-justify leading-relaxed mb-4 hover:text-gray-700">
-                  {t.about.description}
+                  {t.home.discover.about}
                 </p>
 
                 <div className="grid grid-cols-2 gap-6">
-                  {t.about.stats.map((stat, index) => (
+                  {t.home.discover.stats.map((stat, index) => (
                     <GlassCard
                       key={index}
-                      className="p-8 text-center group hover:scale-105 transition-all duration-500 hover:shadow-2xl"
-                      style={{ transitionDelay: `${index * 100}ms` }}
+                      className={`p-8 text-center group hover:scale-105 transition-all duration-500 hover:shadow-2xl${
+                        index ? ` delay-[${index * 100}ms]` : ""
+                      }`}
                     >
                       <div className="text-4xl font-bold text-[#28bba4] mb-3 group-hover:scale-110 transition-transform duration-300">
                         {stat.number}
@@ -595,16 +328,16 @@ export default function HomePage() {
           <div className="text-center mb-20">
             <h2 className="text-5xl md:text-7xl font-extralight text-gray-900 mb-8 tracking-tighter transition-all duration-700 hover:scale-105">
               <span className="bg-gradient-to-r from-gray-900 to-[#28bba4] bg-clip-text text-transparent">
-                {t.services.title}
+                {t.home.services.title}
               </span>
             </h2>
             <p className="text-xl text-gray-600 font-light max-w-3xl mx-auto transition-all duration-500 hover:text-gray-700">
-              {t.services.subtitle}
+              {t.home.services.description}
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
-            {t.services.items.map((service, index) => (
+            {t.home.services.items.map((service, index) => (
               <div
                 key={index}
                 className="group hover:scale-105 transition-all duration-700 hover:shadow-2xl relative overflow-hidden rounded-3xl"
@@ -693,11 +426,11 @@ export default function HomePage() {
           <div className="text-center mb-20">
             <h2 className="text-5xl md:text-7xl font-extralight text-gray-900 mb-8 tracking-tighter transition-all duration-700 hover:scale-105">
               <span className="bg-gradient-to-r from-gray-900 to-[#28bba4] bg-clip-text text-transparent">
-                {t.portfolio.title}
+                {t.home.selectedWorks.title}
               </span>
             </h2>
             <p className="text-xl text-gray-600 font-light transition-all duration-500 hover:text-gray-700">
-              {t.portfolio.subtitle}
+              {t.home.selectedWorks.description}
             </p>
           </div>
 
@@ -792,27 +525,28 @@ export default function HomePage() {
           <div className="text-center mb-20">
             <h2 className="text-5xl md:text-7xl font-extralight text-gray-900 mb-8 tracking-tighter transition-all duration-700 hover:scale-105">
               <span className="bg-gradient-to-r from-gray-900 to-[#28bba4] bg-clip-text text-transparent">
-                {t.testimonials.title}
+                {t.home.testimonials.title}
               </span>
             </h2>
             <p className="text-xl text-gray-600 font-light transition-all duration-500 hover:text-gray-700">
-              {t.testimonials.subtitle}
+              {t.home.testimonials.description}
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {t.testimonials.items.map((testimonial, index) => (
+            {t.home.testimonials.items.map((testimonial, index) => (
               <GlassCard
                 key={index}
-                className="p-8 text-center group hover:scale-105 transition-all duration-500 hover:shadow-2xl relative overflow-hidden"
-                style={{ transitionDelay: `${index * 100}ms` }}
+                className={`p-8 text-center group hover:scale-105 transition-all duration-500 hover:shadow-2xl relative overflow-hidden${
+                  index ? ` delay-[${index * 100}ms]` : ""
+                }`}
               >
                 <div className="absolute inset-0 bg-[#28bba4]/5 opacity-0 group-hover:opacity-100 transition-all duration-500" />
 
                 <Quote className="h-10 w-10 text-[#28bba4] mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 relative z-10" />
 
                 <p className="text-gray-600 leading-relaxed font-light mb-6 italic relative z-10 transition-all duration-300 group-hover:text-gray-700">
-                  "{testimonial.text}"
+                  "{testimonial.quote}"
                 </p>
 
                 <div className="flex justify-center mb-4 relative z-10">
@@ -827,7 +561,7 @@ export default function HomePage() {
 
                 <div className="relative z-10">
                   <p className="font-medium text-gray-900 mb-1 transition-all duration-300">
-                    {testimonial.author}
+                    {testimonial.name}
                   </p>
                   <p className="text-gray-500 text-sm font-light transition-all duration-300 group-hover:text-gray-600">
                     {testimonial.role}
@@ -848,11 +582,11 @@ export default function HomePage() {
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-5xl md:text-7xl font-extralight text-gray-900 mb-8 tracking-tighter transition-all duration-700 hover:scale-105">
               <span className="bg-gradient-to-r from-gray-900 to-[#28bba4] bg-clip-text text-transparent">
-                {t.contact.title}
+                {t.home.contact.title}
               </span>
             </h2>
             <p className="text-xl text-gray-600 mb-20 font-light transition-all duration-500 hover:text-gray-700">
-              {t.contact.subtitle}
+              {t.home.contact.subtitle}
             </p>
 
             <div className="grid md:grid-cols-2 gap-16">
@@ -869,8 +603,9 @@ export default function HomePage() {
                 ].map((item, index) => (
                   <GlassCard
                     key={index}
-                    className="p-6 group hover:scale-105 transition-all duration-500 hover:shadow-xl"
-                    style={{ transitionDelay: `${index * 100}ms` }}
+                    className={`p-6 group hover:scale-105 transition-all duration-500 hover:shadow-xl${
+                      index ? ` delay-[${index * 100}ms]` : ""
+                    }`}
                   >
                     <div className="flex items-center space-x-4">
                       <div className="w-14 h-14 bg-[#28bba4]/20 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -915,7 +650,7 @@ export default function HomePage() {
                   </div>
                   <Button className="w-full bg-gradient-to-r from-[#28bba4] to-[#28bba4]/80 hover:from-[#28bba4]/90 hover:to-[#28bba4]/70 text-white py-4 rounded-2xl font-medium tracking-wide transition-all duration-500 hover:scale-105 hover:shadow-2xl group">
                     <span className="flex items-center justify-center">
-                      {t.contact.cta}
+                      {t.home.contact.form.button}
                       <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                     </span>
                   </Button>
@@ -925,8 +660,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-
 
       {/* Enhanced Styles */}
       <style jsx>{`

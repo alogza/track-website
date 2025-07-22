@@ -1,27 +1,40 @@
-import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react"
-import Link from "next/link"
+"use client";
+import {
+  Facebook,
+  Twitter,
+  Instagram,
+  Linkedin,
+  Mail,
+  Phone,
+  MapPin,
+} from "lucide-react";
+import Link from "next/link";
+import { content } from "@/app/i18n";
+import { useLanguage } from "@/app/context/LanguageContext";
 
 const Footer = () => {
+  const { language } = useLanguage();
+  const t = content[language];
   const services = [
-    { name: "Event Coverage", href: "#services" },
-    { name: "Audio Production", href: "#services" },
-    { name: "Visual Production", href: "#services" },
-    { name: "Photography", href: "#services" },
-  ]
+    { name: t.footer.services.event, href: "#services" },
+    { name: t.footer.services.audio, href: "#services" },
+    { name: t.footer.services.visual, href: "#services" },
+    { name: t.footer.services.photo, href: "#services" },
+  ];
 
   const quickLinks = [
-    { name: "About Us", href: "#about" },
-    { name: "Our Work", href: "#portfolio" },
-    { name: "Clients", href: "#clients" },
-    { name: "Blog", href: "#blog" },
-  ]
+    { name: t.footer.quickLinks.about, href: "#about" },
+    { name: t.footer.quickLinks.work, href: "#portfolio" },
+    { name: t.footer.quickLinks.clients, href: "#clients" },
+    { name: t.footer.quickLinks.blog, href: "#blog" },
+  ];
 
   const socialLinks = [
     { name: "Facebook", icon: Facebook, href: "#" },
     { name: "Twitter", icon: Twitter, href: "#" },
     { name: "Instagram", icon: Instagram, href: "#" },
     { name: "LinkedIn", icon: Linkedin, href: "#" },
-  ]
+  ];
 
   return (
     <footer className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
@@ -31,11 +44,10 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <div className="mb-6">
               <h3 className="text-2xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent mb-4">
-                Creative Studio
+                {t.footer.companyName}
               </h3>
               <p className="text-slate-300 leading-relaxed mb-6 max-w-md">
-                We are a creative production company specializing in event coverage, audio-visual production, and
-                photography services. Bringing your vision to life with professional excellence.
+                {t.footer.description}
               </p>
             </div>
 
@@ -43,22 +55,24 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center gap-3 text-slate-300">
                 <Mail className="h-5 w-5 text-emerald-400" />
-                <span>hello@creativestudio.com</span>
+                <span>{t.footer.contact.email}</span>
               </div>
               <div className="flex items-center gap-3 text-slate-300">
                 <Phone className="h-5 w-5 text-emerald-400" />
-                <span>+1 (555) 123-4567</span>
+                <span>{t.footer.contact.phone}</span>
               </div>
               <div className="flex items-center gap-3 text-slate-300">
                 <MapPin className="h-5 w-5 text-emerald-400" />
-                <span>123 Creative Street, Studio City, CA 90210</span>
+                <span>{t.footer.contact.address}</span>
               </div>
             </div>
           </div>
 
           {/* Services */}
           <div>
-            <h4 className="text-lg font-semibold mb-6 text-white">Our Services</h4>
+            <h4 className="text-lg font-semibold mb-6 text-white">
+              {t.footer.servicesTitle}
+            </h4>
             <ul className="space-y-3">
               {services.map((service, index) => (
                 <li key={index}>
@@ -75,7 +89,9 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-6 text-white">Quick Links</h4>
+            <h4 className="text-lg font-semibold mb-6 text-white">
+              {t.footer.quickLinksTitle}
+            </h4>
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <li key={index}>
@@ -98,7 +114,7 @@ const Footer = () => {
               <span className="text-slate-300 font-medium">Follow Us:</span>
               <div className="flex gap-4">
                 {socialLinks.map((social, index) => {
-                  const Icon = social.icon
+                  const Icon = social.icon;
                   return (
                     <Link
                       key={index}
@@ -108,7 +124,7 @@ const Footer = () => {
                     >
                       <Icon className="h-5 w-5" />
                     </Link>
-                  )
+                  );
                 })}
               </div>
             </div>
@@ -130,15 +146,26 @@ const Footer = () => {
         {/* Bottom Footer */}
         <div className="mt-8 pt-8 border-t border-slate-700">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-slate-400 text-sm">© {new Date().getFullYear()} Creative Studio. All rights reserved.</p>
+            <p className="text-slate-400 text-sm">
+              © {new Date().getFullYear()} {t.footer.companyName}. All rights reserved.
+            </p>
             <div className="flex gap-6 text-sm">
-              <Link href="#" className="text-slate-400 hover:text-emerald-400 transition-colors">
+              <Link
+                href="#"
+                className="text-slate-400 hover:text-emerald-400 transition-colors"
+              >
                 Privacy Policy
               </Link>
-              <Link href="#" className="text-slate-400 hover:text-emerald-400 transition-colors">
+              <Link
+                href="#"
+                className="text-slate-400 hover:text-emerald-400 transition-colors"
+              >
                 Terms of Service
               </Link>
-              <Link href="#" className="text-slate-400 hover:text-emerald-400 transition-colors">
+              <Link
+                href="#"
+                className="text-slate-400 hover:text-emerald-400 transition-colors"
+              >
                 Sitemap
               </Link>
             </div>
@@ -146,7 +173,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

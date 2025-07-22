@@ -17,6 +17,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import HeroSections from "@/components/heading";
 // import Header from "./components/header";
+import { content } from "@/app/i18n";
+import { useLanguage } from "@/app/context/LanguageContext";
 
 // Define the Project type for better type safety
 type Project = {
@@ -44,6 +46,8 @@ export default function PortfolioPage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { language } = useLanguage();
+  const t = content[language];
 
   function generateWaveHeights() {
     return Array.from({ length: 12 }, () => Math.random() * 100 + 20);
@@ -128,8 +132,8 @@ export default function PortfolioPage() {
   return (
     <div className="min-h-screen bg-white">
       <HeroSections
-        title="Track Protofolio"
-        description="Professional event coverage, audio production, and visual storytelling that brings your vision to life."
+        title={t.portfolio.hero.title}
+        description={t.portfolio.hero.subtitle}
         image="/salah1.jpeg" // replace with your actual image path
       />
 
@@ -137,9 +141,8 @@ export default function PortfolioPage() {
       <div className="py-20 bg-white">
         <div className="text-center mb-16">
           <h2 className="text-5xl md:text-7xl lg:text-9xl font-extralight text-gray-800 mb-4">
-            Our{" "}
             <span className="text-5xl md:text-7xl lg:text-9xl bg-gradient-to-r from-gray-900 via-[#28bba4] to-[#28bba4] bg-clip-text text-transparent">
-              Works
+              {t.portfolio.worksSection.heading}
             </span>
           </h2>
           <div className="w-24 h-1 bg-[#28bca2] mx-auto rounded-full"></div>
@@ -281,10 +284,10 @@ export default function PortfolioPage() {
                 <Eye size={32} className="text-gray-400" />
               </div>
               <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                لا توجد مشاريع
+                {t.portfolio.worksSection.noProjects.title}
               </h3>
               <p className="text-gray-600">
-                لم يتم العثور على مشاريع في هذه الفئة
+                {t.portfolio.worksSection.noProjects.message}
               </p>
             </div>
           )}
