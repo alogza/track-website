@@ -50,7 +50,7 @@ export default function ContactPage() {
       <HeroSection
         title={t.contact.hero.title}
         description={t.contact.hero.subtitle}
-        image="/hasan1.jpeg"
+        image="/photo21.jpg"
       />
 
       {/* Contact Section */}

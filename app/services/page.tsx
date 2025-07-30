@@ -73,7 +73,7 @@ export default function ServicesPage() {
       description: t.services.eventCoverage.description,
       color: "#28bca2",
       icon: Camera,
-      image: "/events.jpg?height=500&width=700&text=Event+Coverage",
+      image: "/photo19.jpg?height=500&width=700&text=Event+Coverage",
       features: t.services.eventCoverage.features,
       stats: t.services.eventCoverage.stats,
       subServices: t.services.eventCoverage.details.map((detail, i) => ({
@@ -89,7 +89,7 @@ export default function ServicesPage() {
       description: t.services.audioProduction.description,
       color: "#ff6b35",
       icon: Music,
-      image: "/event2.jpg?height=500&width=700&text=Audio+Production",
+      image: "/photo6.jpg?height=500&width=700&text=Audio+Production",
       features: t.services.audioProduction.features,
       stats: t.services.audioProduction.stats,
       subServices: t.services.audioProduction.details.map((detail, i) => ({
@@ -105,7 +105,7 @@ export default function ServicesPage() {
       description: t.services.visualProduction.description,
       color: "#00bcd4",
       icon: Film,
-      image: "/events2.jpg?height=500&width=700&text=Visual+Production",
+      image: "/photo1.jpg?height=500&width=700&text=Visual+Production",
       features: t.services.visualProduction.features,
       stats: t.services.visualProduction.stats,
       subServices: t.services.visualProduction.details.map((detail, i) => ({
@@ -140,7 +140,7 @@ export default function ServicesPage() {
       <HeaderPage
         title={t.services.hero.title}
         description={t.services.hero.subtitle}
-        image="/salah2.jpeg" // replace with your actual image path
+        image="/photo16.jpg" // replace with your actual image path
       />
 
       {/* Main Services Section */}

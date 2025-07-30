@@ -52,7 +52,7 @@ export default function HomePage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [projects, setProjects] = useState<Project[]>([]);
   const { language } = useLanguage();
-  
+
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", handleScroll);
@@ -184,7 +184,11 @@ export default function HomePage() {
             </div> */}
 
             {/* Revolutionary Title */}
-            <h1 className={`text-5xl md:text-7xl  font-extralight mb-8 tracking-tighter leading-none animate-in fade-in-0 slide-in-from-bottom-6 duration-1000 delay-200 inline-block bg-gradient-to-r from-gray-900 via-[#28bba4] to-[#28bba4] bg-clip-text text-transparent ${language === "ar" ? "lg:text-8xl h-[120px]" : "lg:text-9xl"}`}>
+            <h1
+              className={`text-5xl md:text-7xl  font-extralight mb-8 tracking-tighter leading-none animate-in fade-in-0 slide-in-from-bottom-6 duration-1000 delay-200 inline-block bg-gradient-to-r from-gray-900 via-[#28bba4] to-[#28bba4] bg-clip-text text-transparent ${
+                language === "ar" ? "lg:text-8xl h-[120px]" : "lg:text-9xl"
+              }`}
+            >
               {/* <span
                 className="inline-block bg-gradient-to-r from-gray-900 via-[#28bba4] to-[#28bba4] bg-clip-text text-transparent"
                 style={{
@@ -306,7 +310,7 @@ export default function HomePage() {
                   hover={false}
                 >
                   <Image
-                    src="/event2.jpg"
+                    src="/photo2.jpg"
                     alt="About Track"
                     width={600}
                     height={500}

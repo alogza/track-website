@@ -10,10 +10,10 @@ export const content = {
     },
   home: {
     hero: {
-      title: "Creative Excellence",
-      subtitle: "Crafting extraordinary visual experiences through the perfect harmony of creativity and technology. Every project is a journey of artistic discovery.",
+      title: "Track",
+      subtitle: "A specialized company in audio and visual content production, committed to delivering exceptional quality through a team of seasoned experts and industry professionals.",
       cta: "Discover Now",
-      slogan: "ممتاز إبداعك يحدد لك المسار - كل المسارات تؤدي إلينا"
+      slogan: "All tracks lead to us"
     },
     discover: {
       title: "Discover Track",
@@ -28,51 +28,22 @@ export const content = {
     },
     services: {
       title: "Services",
-      description: "Comprehensive creative solutions tailored to your vision",
+      description: "We handle all event operations from the idea to the execution.",
       items: [
-        {
-          image: "/services.jpg",
-          title: "Brand Identity",
-          desc: "Complete visual identity systems that capture your brand's essence",
-          features: [
-            "Logo & Visual Identity",
-            "Brand Strategy & Guidelines",
-            "Print & Digital Applications",
-            "Brand Positioning",
-          ],
+         {
+          image: "/photo12.jpg",
+          title: "Event Coverage",
+          desc: "(Photography – Videography – LED Screens – Live Broadcasting – Audio Engineering – Live Performers)",
         },
         {
-          image: "/services.jpg",
-          title: "Digital Art",
-          desc: "Contemporary digital artwork and interactive experiences",
-          features: [
-            "Digital Illustrations",
-            "Motion Graphics & Animation",
-            "Interactive Media Design",
-            "NFT Art Creation",
-          ],
+          image: "/photo9.jpg",
+          title: "Audio Production",
+          desc: "(Songs – Folkloric Chanting – Nasheeds – Wedding Intros/Tracks – Musical Theater/Oprettas)",
         },
         {
-          image: "/services.jpg",
-          title: "Creative Direction",
-          desc: "Strategic creative guidance for your projects and campaigns",
-          features: [
-            "Art Direction",
-            "Creative Campaign Strategy",
-            "Visual Storytelling",
-            "Creative Consulting",
-          ],
-        },
-        {
-          image: "/services.jpg",
-          title: "Visual Consulting",
-          desc: "Expert design consultation and creative problem-solving",
-          features: [
-            "Design System Audit",
-            "Creative Workshops",
-            "Strategic Visual Planning",
-            "Brand Evolution",
-          ],
+          image: "/photo17.jpg",
+          title: "Video Production",
+          desc: "(Commercials – Short Films)",
         },
       ],
     },
@@ -129,15 +100,15 @@ export const content = {
       heading: "About ",
       mission: {
         title: "Our Mission",
-        description: "We are committed to providing exceptional therapeutic nutrition services based on the latest scientific research. Our mission is to empower individuals to achieve their health goals through personalized nutrition programs and precise follow-up."
+        description: "To turn events into moments that can’t be repeated and memories that can’t be forgotten."
       },
       vision: {
         title: "Our Vision",
-        description: "To be the leading clinic in therapeutic nutrition in the region, known for excellence in providing innovative and comprehensive nutritional solutions. We aspire to be the first reference for individuals seeking to improve their health."
+        description: "To turn events into moments that can’t be repeated and memories that can’t be forgotten."
       },
       values: {
-        title: "Our Values",
-        description: "Integrity, excellence, and personal care are the foundations of our work. We believe in treating each patient as a unique case and are committed to providing the highest levels of professional service."
+        title: "Our Goal",
+        description: "To actively innovate a creative approach to the execution and management of national events, both local and international, according to the highest quality standards, with all professionalism and precision."
       }
     }
   },
@@ -457,10 +428,10 @@ export const content = {
     },
    home: {
     hero: {
-      title: "التميّز الإبداعي",
-      subtitle: "نصنع تجارب بصرية استثنائية من خلال التناسق المثالي بين الإبداع والتكنولوجيا. كل مشروع هو رحلة اكتشاف فني.",
+      title: "تراك",
+      subtitle: "شركة متخصصة في إنتاج المحتوى المرئي والمسموع بمعايير احترافية من خبراء وتخصصين في المجال الفني.",
       cta: "اكتشف الآن",
-      slogan: "ممتاز إبداعك يحدد لك المسار - كل المسارات تؤدي إلينا"
+      slogan: "كل المسارات تؤدي إلينا"
     },
     discover: {
       title: "اكتشف تراك",
@@ -471,55 +442,27 @@ export const content = {
         { number: "15", label: "جائزة" },
         { number: "8", label: "سنوات خبرة" },
       ],
-      about: "بخبرة تتجاوز العقد في الفن الرقمي، أختص في ابتكار تجارب بصرية جذابة تلامس الجمهور في جميع أنحاء العالم."
+      about: "شركة رائدة في مجال الإنتاج الصوتي والمرئي وفق أعلى المعايير الفنية، وبكل حرفية ومهنية."
     },
     services: {
       title: "الخدمات",
-      description: "حلول إبداعية شاملة مصممة خصيصًا لرؤيتك",
+      description: "نتولى جميع عمليات الحدث من الفكرة إلى التنفيذ",
+      
      items: [
         {
-          image: "/services.jpg",
-          title: "هوية العلامة التجارية",
-          desc: "أنظمة الهوية البصرية الكاملة التي تلتقط جوهر علامتك التجارية",
-          features: [
-            "تصميم الشعار والهوية البصرية",
-            "استراتيجية العلامة التجارية",
-            "التطبيقات المطبوعة والرقمية",
-            "تموضع العلامة التجارية",
-          ],
+          image: "/photo12.jpg",
+          title: "تغطية الفعاليات",
+          desc: "(تصوير فوتوغرافي – تصوير فيديو – شاشات – نقل مباشر – صوتيات – فنانين)",
         },
         {
-          image: "/services.jpg",
-          title: "الفن الرقمي",
-          desc: "أعمال فنية رقمية معاصرة وتجارب تفاعلية",
-          features: [
-            "الرسوم الرقمية",
-            "الرسوم المتحركة والحركة",
-            "تصميم الوسائط التفاعلية",
-            "إنشاء فن NFT",
-          ],
+          image: "/photo9.jpg",
+          title: "تغطية الفعاليات",
+          desc: "(أغاني – شيلات – أناشيد – زفات – أوبريتات)",
         },
         {
-          image: "/services.jpg",
-          title: "التوجيه الإبداعي",
-          desc: "إرشاد إبداعي استراتيجي لمشاريعك وحملاتك",
-          features: [
-            "التوجيه الفني",
-            "استراتيجية الحملة الإبداعية",
-            "السرد البصري",
-            "الاستشارة الإبداعية",
-          ],
-        },
-        {
-          image: "/services.jpg",
-          title: "الاستشارة البصرية",
-          desc: "استشارة تصميم متخصصة وحل المشاكل الإبداعية",
-          features: [
-            "تدقيق نظام التصميم",
-            "ورش العمل الإبداعية",
-            "التخطيط البصري الاستراتيجي",
-            "تطوير العلامة التجارية",
-          ],
+          image: "/photo17.jpg",
+          title: "تغطية الفعاليات",
+          desc: "(إعلانات – أفلام قصيرة)",
         },
       ],
     },
@@ -583,15 +526,15 @@ export const content = {
       heading: "عن "  ,
       mission: {
         title: "رسالتنا",
-        description: "نحن ملتزمون بتقديم خدمات تغذية علاجية استثنائية مبنية على أحدث الأبحاث العلمية. رسالتنا هي تمكين الأفراد من تحقيق أهدافهم الصحية من خلال برامج تغذية شخصية ومتابعة دقيقة."
+        description: "نحول الفعاليات الى لحظاتٍ لا يمكن تكرارها، وذكريات لا يمكن نسيانها."
       },
       vision: {
         title: "رؤيتنا",
-        description: "أن نكون العيادة الرائدة في مجال التغذية العلاجية في المنطقة، والمعروفة بالتميز في تقديم حلول تغذية مبتكرة وشاملة. نطمح لأن نكون المرجع الأول للأفراد الراغبين في تحسين صحتهم."
+        description: "أن نُبدع في خلق أفكار تنظيمية مبتكرة تُسهِّل الصعوبات وتُذلل العقبات، وتجعل فعالياتكم ممتعة وقت التنفيذ مبهرة في النتائج."
       },
       values: {
-        title: "قيمُنا",
-        description: "النزاهة، والتميّز، والرعاية الشخصية هي أساس عملنا. نحن نؤمن بمعاملة كل مريض كحالة فريدة وملتزمون بتقديم أعلى مستويات الخدمة المهنية."
+        title: "هدفنا",
+        description: "أن نُبدع في خلق أفكار تنظيمية مبتكرة تُسهِّل الصعوبات وتُذلل العقبات، وتجعل فعالياتكم ممتعة وقت التنفيذ مبهرة في النتائج"
       }
     }
   },

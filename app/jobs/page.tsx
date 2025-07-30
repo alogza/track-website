@@ -134,7 +134,7 @@ export default function PortfolioPage() {
       <HeroSections
         title={t.portfolio.hero.title}
         description={t.portfolio.hero.subtitle}
-        image="/salah1.jpeg" // replace with your actual image path
+        image="/photo20.jpg" // replace with your actual image path
       />
 
       {/* Portfolio Section */}

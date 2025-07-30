@@ -44,7 +44,7 @@ export default function HeroSection() {
       <HeroSections
         title=  {t.about.hero.title}
         description={t.about.hero.subtitle}
-        image="/hasan2.jpeg" // replace with your actual image path
+        image="/photo13.jpg" // replace with your actual image path
       />
 
       {/* Add the new About Section */}
@@ -97,9 +97,9 @@ function AboutSection() {
   //   }, []);
 
   const sectionImages = [
-    "/event2.jpg", // Vision image
-    "/events.jpg", // Mission image
-    "/image.jpg", // Values image
+    "/photo3.jpg", // Vision image
+    "/photo7.jpg", // Mission image
+    "/photo18.jpg", // Values image
   ];
   const sections = [
     {
