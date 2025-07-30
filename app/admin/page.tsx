@@ -31,6 +31,7 @@ interface Project {
   date: string;
   images: string[];
   featured: boolean;
+  youtubeUrl?: string; // <-- Added
 }
 
 export default function AdminPage() {
@@ -48,15 +49,36 @@ export default function AdminPage() {
     date: "",
     images: [],
     featured: false,
+    youtubeUrl: "", // <-- Added
   });
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     fetch("/api/projects")
       .then((res) => res.json())
-      .then(setProjects)
-      .catch(console.error);
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setProjects(data);
+        } else {
+          setProjects([]); // fallback to empty array
+          console.error("Projects API did not return an array:", data);
+        }
+      })
+      .catch((err) => {
+        setProjects([]);
+        console.error(err);
+      });
   }, []);
+
+  // Helper to get Cloudinary endpoint based on file type
+  const getCloudinaryEndpoint = (file: File, cloudName: string) => {
+    if (file.type.startsWith("image/")) {
+      return `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
+    } else if (file.type.startsWith("audio/")) {
+      return `https://api.cloudinary.com/v1_1/${cloudName}/video/upload`;
+    }
+    throw new Error("Unsupported file type");
+  };
 
   const handleImageUpload = async (file: File): Promise<string> => {
     const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
@@ -74,28 +96,32 @@ export default function AdminPage() {
 
     console.log("Uploading file:", file.name, "Size:", file.size);
 
-    const res = await fetch(
-      `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
-      {
-        method: "POST",
-        body: form,
-      }
-    );
+    const endpoint = getCloudinaryEndpoint(file, cloudName);
+    const res = await fetch(endpoint, {
+      method: "POST",
+      body: form,
+    });
 
-    const data = await res.json();
+    const text = await res.text();
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch {
+      data = text;
+    }
 
     if (!res.ok) {
-      const errorText = await res.text();
       console.error("Cloudinary upload error:", {
         status: res.status,
         statusText: res.statusText,
         data: data,
-        errorText: errorText,
         cloudName: cloudName,
         uploadPreset: uploadPreset,
       });
       throw new Error(
-        `Failed to upload image: ${res.status} ${res.statusText}`
+        `Failed to upload image: ${res.status} ${res.statusText} - ${
+          data?.error?.message || data
+        }`
       );
     }
 
@@ -131,30 +157,34 @@ export default function AdminPage() {
 
       console.log("Uploading file:", file.name, "Size:", file.size);
 
-      const res = await fetch(
-        `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
-        {
-          method: "POST",
-          body: form,
-        }
-      );
+      const endpoint = getCloudinaryEndpoint(file, cloudName);
+      const res = await fetch(endpoint, {
+        method: "POST",
+        body: form,
+      });
 
-      const data = await res.json();
+      const text = await res.text();
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch {
+        data = text;
+      }
 
       if (!res.ok) {
-        const errorText = await res.text();
         console.error("Cloudinary upload error:", {
           status: res.status,
           statusText: res.statusText,
           data: data,
-          errorText: errorText,
           fileName: file.name,
           fileSize: file.size,
           cloudName: cloudName,
           uploadPreset: uploadPreset,
         });
         throw new Error(
-          `Failed to upload ${file.name}: ${res.status} ${res.statusText}`
+          `Failed to upload ${file.name}: ${res.status} ${res.statusText} - ${
+            data?.error?.message || data
+          }`
         );
       }
 
@@ -236,6 +266,7 @@ export default function AdminPage() {
       date: "",
       images: [],
       featured: false,
+      youtubeUrl: "", // <-- Added
     });
     setEditingProject(null);
     setIsFormOpen(false);
@@ -254,6 +285,7 @@ export default function AdminPage() {
       date: project.date,
       images: project.images,
       featured: project.featured,
+      youtubeUrl: project.youtubeUrl || "", // <-- Added
     });
     setIsFormOpen(true);
   };
@@ -295,39 +327,55 @@ export default function AdminPage() {
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {projects.map((project) => (
-          <Card key={project.id}>
-            <CardContent className="p-0">
-              <div className="relative h-48">
-                <Image
-                  src={project.images[0] || "/placeholder.svg"}
-                  alt={project.title}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-4">
-                <h3 className="font-bold text-right">{project.title}</h3>
-                <div className="flex justify-end gap-2 mt-3">
-                  <Button
-                    onClick={() => handleEdit(project)}
-                    size="sm"
-                    variant="outline"
-                  >
-                    <Edit size={16} />
-                  </Button>
-                  <Button
-                    onClick={() => handleDelete(project.id)}
-                    size="sm"
-                    variant="destructive"
-                  >
-                    <Trash2 size={16} />
-                  </Button>
+        {projects.map((project) => {
+          // Find the first image file (not audio)
+          const firstImage = (project.images || []).find(
+            (img) =>
+              img.match(/^https?:\/\/.+/) &&
+              !img.match(/\.(mp3|wav|ogg|m4a|aac|flac|webm|oga)$/i)
+          );
+          // Find the first audio file
+          const firstAudio = (project.images || []).find((img) =>
+            img.match(/\.(mp3|wav|ogg|m4a|aac|flac|webm|oga)$/i)
+          );
+          return (
+            <Card key={project.id}>
+              <CardContent className="p-0">
+                <div className="relative h-48 flex items-center justify-center bg-white">
+                  {firstImage ? (
+                    <Image
+                      src={firstImage}
+                      alt={project.title}
+                      fill
+                      className="object-cover"
+                    />
+                  ) : (
+                    <Music size={64} className="text-[#28bca2] opacity-60" />
+                  )}
                 </div>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
+                <div className="p-4">
+                  <h3 className="font-bold text-right">{project.title}</h3>
+                  <div className="flex justify-end gap-2 mt-3">
+                    <Button
+                      onClick={() => handleEdit(project)}
+                      size="sm"
+                      variant="outline"
+                    >
+                      <Edit size={16} />
+                    </Button>
+                    <Button
+                      onClick={() => handleDelete(project.id)}
+                      size="sm"
+                      variant="destructive"
+                    >
+                      <Trash2 size={16} />
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          );
+        })}
       </div>
 
       {isFormOpen && (
@@ -439,6 +487,15 @@ export default function AdminPage() {
                 }
                 className="w-full p-2 border rounded"
               />
+              <input
+                type="url"
+                value={formData.youtubeUrl}
+                onChange={(e) =>
+                  setFormData({ ...formData, youtubeUrl: e.target.value })
+                }
+                className="w-full p-2 border rounded"
+                placeholder="رابط فيديو يوتيوب (اختياري)"
+              />
               <div className="space-y-2">
                 {formData.images.map((image, idx) => (
                   <div key={idx} className="flex gap-2 items-center">
@@ -463,7 +520,7 @@ export default function AdminPage() {
                 ))}
                 <input
                   type="file"
-                  accept="image/*"
+                  accept="image/*,audio/*"
                   multiple
                   style={{ display: "none" }}
                   ref={fileInputRef}
@@ -475,7 +532,7 @@ export default function AdminPage() {
                   size="sm"
                   variant="outline"
                 >
-                  <Plus size={14} className="mr-1" /> إضافة صورة
+                  <Plus size={14} className="mr-1" /> إضافة صورة أو صوت
                 </Button>
               </div>
               <Button type="submit" className="bg-[#28bca2] text-white">

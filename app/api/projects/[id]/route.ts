@@ -25,6 +25,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
         date: new Date(data.date),
         images: data.images,
         featured: data.featured || false,
+        youtubeUrl: data.youtubeUrl || null,
       },
     })
 
