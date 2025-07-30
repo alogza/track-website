@@ -306,7 +306,7 @@ export default function HomePage() {
                   hover={false}
                 >
                   <Image
-                    src="/event2.jpg"
+                    src="/photo2.jpg"
                     alt="About Track"
                     width={600}
                     height={500}
