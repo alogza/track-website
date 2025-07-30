@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { GlassCard } from "@/components/glass-card";
@@ -22,12 +22,28 @@ export function Navbar({ scrollY }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { language, setLanguage } = useLanguage();
   const navItems = content[language].nav;
+  const menuRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMenuOpen]);
 
   return (
     <nav className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-500">
       <GlassCard
         className={`px-8 py-3 transition-all duration-500 ${
-          scrollY > 100 ? "bg-white/20 shadow-xl" : "bg-white/80"
+          scrollY > 100 ? "bg-white/80 shadow-xl" : "bg-white/80"
         }`}
       >
         <div className="flex items-center space-x-8">
@@ -90,8 +106,11 @@ export function Navbar({ scrollY }: NavbarProps) {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="mt-4 lg:hidden animate-in slide-in-from-top-2 duration-300">
-          <GlassCard className="p-6 bg-white/10">
+        <div
+          ref={menuRef}
+          className="mt-4 lg:hidden animate-in slide-in-from-top-2 duration-300"
+        >
+          <GlassCard className="p-6 bg-white/80">
             <div className="flex flex-col space-y-4">
               {Object.entries(navItems).map(([key, value]) => (
                 <a

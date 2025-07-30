@@ -128,18 +128,6 @@ const Footer = () => {
                 })}
               </div>
             </div>
-
-            {/* Newsletter Signup */}
-            <div className="flex gap-2">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent"
-              />
-              <button className="px-6 py-2 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 rounded-lg font-medium transition-all duration-200 hover:scale-105">
-                Subscribe
-              </button>
-            </div>
           </div>
         </div>
 
@@ -147,28 +135,20 @@ const Footer = () => {
         <div className="mt-8 pt-8 border-t border-slate-700">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-slate-400 text-sm">
-              © {new Date().getFullYear()} {t.footer.companyName}. All rights reserved.
+              © {new Date().getFullYear()} {t.footer.companyName}. All rights
+              reserved.
             </p>
-            <div className="flex gap-6 text-sm">
+            <p className="text-slate-400/50 text-sm text-center md:text-right">
+              Developed by{" "}
               <Link
-                href="#"
-                className="text-slate-400 hover:text-emerald-400 transition-colors"
+                href="https://www.alogza.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-emerald-400 hover:underline"
               >
-                Privacy Policy
-              </Link>
-              <Link
-                href="#"
-                className="text-slate-400 hover:text-emerald-400 transition-colors"
-              >
-                Terms of Service
-              </Link>
-              <Link
-                href="#"
-                className="text-slate-400 hover:text-emerald-400 transition-colors"
-              >
-                Sitemap
-              </Link>
-            </div>
+                Alogza
+              </Link>{" "}
+            </p>
           </div>
         </div>
       </div>

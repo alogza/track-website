@@ -52,7 +52,7 @@ export default function HomePage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [projects, setProjects] = useState<Project[]>([]);
   const { language } = useLanguage();
-
+  
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", handleScroll);
@@ -167,7 +167,7 @@ export default function HomePage() {
           <div className="max-w-6xl mx-auto">
             {/* Absolutely positioned WaveShowcase overlay */}
             <div
-              className="absolute left-0 right-0 top-28 z-30 flex justify-center pointer-events-auto"
+              className="absolute left-0 right-0 max-sm:top-5 top-28 z-30 flex justify-center pointer-events-auto"
               style={{ width: "100%", height: "auto" }}
             >
               <WaveShowcase
@@ -184,11 +184,7 @@ export default function HomePage() {
             </div> */}
 
             {/* Revolutionary Title */}
-            <h1
-              className={`text-5xl md:text-7xl  font-extralight mb-8 tracking-tighter leading-none animate-in fade-in-0 slide-in-from-bottom-6 duration-1000 delay-200 inline-block bg-gradient-to-r from-gray-900 via-[#28bba4] to-[#28bba4] bg-clip-text text-transparent ${
-                language === "ar" ? "lg:text-8xl h-[120px]" : "lg:text-9xl"
-              }`}
-            >
+            <h1 className={`text-5xl md:text-7xl  font-extralight mb-8 tracking-tighter leading-none animate-in fade-in-0 slide-in-from-bottom-6 duration-1000 delay-200 inline-block bg-gradient-to-r from-gray-900 via-[#28bba4] to-[#28bba4] bg-clip-text text-transparent ${language === "ar" ? "lg:text-8xl  max-sm:h-[60px] h-[120px]" : "lg:text-9xl"}`}>
               {/* <span
                 className="inline-block bg-gradient-to-r from-gray-900 via-[#28bba4] to-[#28bba4] bg-clip-text text-transparent"
                 style={{
@@ -210,7 +206,7 @@ export default function HomePage() {
 
             {/* Arabic Slogan with Special Effects */}
             <p
-              className="text-xl md:text-2xl text-[#28bba4] mb-[420px] font-medium animate-in fade-in-0 slide-in-from-bottom-4 duration-1000 delay-600"
+              className="text-xl md:text-2xl text-[#28bba4] max-sm:mb-[220px] mb-[420px] font-medium animate-in fade-in-0 slide-in-from-bottom-4 duration-1000 delay-600"
               // style={{
               //   animation: "3s ease-in-out infinite, float 6s ease-in-out infinite",
               //   textShadow: "0 0 20px rgba(40, 187, 164, 0.3)",
@@ -310,7 +306,7 @@ export default function HomePage() {
                   hover={false}
                 >
                   <Image
-                    src="/photo2.jpg"
+                    src="/event2.jpg"
                     alt="About Track"
                     width={600}
                     height={500}
@@ -340,7 +336,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {t.home.services.items.map((service, index) => (
               <div
                 key={index}

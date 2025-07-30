@@ -36,7 +36,9 @@ export default function ContactPage() {
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     setFormData({
       ...formData,
@@ -53,7 +55,6 @@ export default function ContactPage() {
         image="/photo21.jpg"
       />
 
-      {/* Contact Section */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -62,11 +63,14 @@ export default function ContactPage() {
                 {t.contact.getInTouch.heading}
               </span>
             </h2>
-            <p className="text-xl text-gray-600 mt-4 font-light">{t.contact.getInTouch.description}</p>
+            <p className="text-xl text-gray-600 mt-4 font-light">
+              {t.contact.getInTouch.description}
+            </p>
           </div>
 
+          {/* Contact Info + Form */}
           <div className="grid lg:grid-cols-2 gap-16">
-            {/* Contact Info */}
+            {/* Left: Contact Info */}
             <div className="space-y-8">
               {[
                 {
@@ -95,24 +99,30 @@ export default function ContactPage() {
                       <item.icon className="h-6 w-6 text-[#28bba4]" />
                     </div>
                     <div>
-                      <p className="font-medium text-gray-900 mb-1">{item.title}</p>
-                      <p className="text-gray-600 font-light group-hover:text-gray-700">{item.value}</p>
+                      <p className="font-medium text-gray-900 mb-1">
+                        {item.title}
+                      </p>
+                      <p className="text-gray-600 font-light group-hover:text-gray-700">
+                        {item.value}
+                      </p>
                     </div>
                   </div>
                 </GlassCard>
               ))}
 
               {/* Social Media */}
-              <div className="pt-4">
-                <h3 className="text-xl font-bold text-gray-800 mb-4">{t.contact.socialMedia.title}</h3>
-                <div className="flex gap-4">
+              <div className="pt-4 text-center">
+                <h3 className="text-xl font-bold text-gray-800 mb-4">
+                  {t.contact.socialMedia.title}
+                </h3>
+                <div className="flex gap-4 justify-center">
                   {t.contact.socialMedia.platforms.map((platform, i) => {
                     const icons = [Facebook, Instagram, Twitter, Linkedin];
                     const hrefs = [
-                      "https://facebook.com/nutritionclinic",
-                      "https://instagram.com/nutritionclinic",
-                      "https://twitter.com/nutrition_clinic",
-                      "https://linkedin.com/company/nutritionclinic",
+                      "https://facebook.com/track",
+                      "https://instagram.com/track",
+                      "https://twitter.com/track",
+                      "https://linkedin.com/company/track",
                     ];
                     const classes = [
                       "bg-blue-600 hover:bg-blue-700",
@@ -135,20 +145,9 @@ export default function ContactPage() {
                   })}
                 </div>
               </div>
-
-              {/* Map Placeholder */}
-              <div className="pt-8">
-                <h3 className="text-xl font-bold text-gray-800 mb-4">{t.contact.mapSection.title}</h3>
-                <div className="bg-gray-200 rounded-lg h-64 flex items-center justify-center text-center">
-                  <div>
-                    <MapPin className="w-12 h-12 text-gray-400 mx-auto mb-2" />
-                    <p className="text-gray-500">{t.contact.mapSection.placeholder}</p>
-                  </div>
-                </div>
-              </div>
             </div>
 
-            {/* Contact Form */}
+            {/* Right: Contact Form */}
             <GlassCard className="p-8 hover:scale-105 h-[500px] transition-all duration-500 hover:shadow-2xl">
               <form className="space-y-6" onSubmit={handleSubmit}>
                 <input
@@ -188,38 +187,68 @@ export default function ContactPage() {
               </form>
             </GlassCard>
           </div>
-        </div>
-      </section>
 
-      {/* Quick Contact */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="bg-white rounded-3xl p-8 md:p-12 shadow-xl">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-gray-800 mb-4">{t.contact.quickContact.title}</h2>
-              <p className="text-gray-600">
-                {t.contact.quickContact.description}
-              </p>
+          {/* Map + Quick Contact */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-16">
+            {/* Map */}
+            <div className="pt-4 text-center">
+              <h3 className="text-xl font-bold text-gray-800 mb-4">
+                {t.contact.mapSection.title}
+              </h3>
+              <div className="rounded-2xl overflow-hidden shadow-md w-full h-[300px] md:h-[450px]">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2158.0594348149334!2d39.82521949243341!3d21.420826397153153!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15c204b74c28d467%3A0xb2f543a618225767!2sAl%20Kaaba!5e1!3m2!1sen!2s!4v1753881204521!5m2!1sen!2s"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full h-full"
+                ></iframe>
+              </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {t.contact.quickContact.methods.map((method, i) => (
-                <a
-                  key={i}
-                  href={method.type === "Call Now" || method.type === "اتصل الآن" ? `tel:${method.value}` : "https://wa.me/967771794448"}
-                  target={method.type === "Call Now" || method.type === "اتصل الآن" ? undefined : "_blank"}
-                  rel={method.type === "Call Now" || method.type === "اتصل الآن" ? undefined : "noopener noreferrer"}
-                  style={{ backgroundColor: i === 0 ? "#5a9e9d" : "#d03a82" }}
-                  className="text-white p-4 rounded-2xl text-center hover:opacity-90 transition-colors duration-300 group"
-                >
-                  {i === 0 ? (
-                    <Phone className="w-12 h-12 mx-auto mb-4 group-hover:scale-110 transition-transform" />
-                  ) : (
-                    <MessageCircle className="w-12 h-12 mx-auto mb-4 group-hover:scale-110 transition-transform" />
-                  )}
-                  <h3 className="text-xl font-bold mb-2">{method.type}</h3>
-                  <p className="opacity-90">{method.value}</p>
-                </a>
-              ))}
+
+            {/* Quick Contact */}
+            <div className="bg-white rounded-3xl p-6 shadow-xl h-full flex flex-col justify-center">
+              <div className="text-center mb-6">
+                <h2 className="text-2xl font-bold text-gray-800 mb-2">
+                  {t.contact.quickContact.title}
+                </h2>
+                <p className="text-gray-600">
+                  {t.contact.quickContact.description}
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {t.contact.quickContact.methods.map((method, i) => (
+                  <a
+                    key={i}
+                    href={
+                      method.type === "Call Now" || method.type === "اتصل الآن"
+                        ? `tel:${method.value}`
+                        : "https://wa.me/967771794448"
+                    }
+                    target={
+                      method.type === "Call Now" || method.type === "اتصل الآن"
+                        ? undefined
+                        : "_blank"
+                    }
+                    rel="noopener noreferrer"
+                    style={{
+                      backgroundColor: i === 0 ? "#5a9e9d" : "#d03a82",
+                    }}
+                    className="text-white p-6 rounded-2xl text-center hover:opacity-90 transition-all duration-300 group flex flex-col items-center justify-center"
+                  >
+                    {i === 0 ? (
+                      <Phone className="w-8 h-8 mb-2 group-hover:scale-110 transition-transform" />
+                    ) : (
+                      <MessageCircle className="w-8 h-8 mb-2 group-hover:scale-110 transition-transform" />
+                    )}
+                    <h3 className="text-lg font-bold mb-1">{method.type}</h3>
+                    <p className="opacity-90 text-sm">{method.value}</p>
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>

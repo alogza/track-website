@@ -81,17 +81,17 @@ export function WaveShowcase({ images, centerImage }: WaveShowcaseProps) {
         )}
 
         {/* Left 5 waves */}
-        {Array.from({ length: 4 }).map((_, index) => {
+        {Array.from({ length: 5 }).map((_, index) => {
           const baseHeight = 80 + Math.sin(index * 0.6) * 50;
           const animatedHeight = baseHeight + Math.sin((animationPhase + index * 10) * 0.1) * 20;
           const isHovered = false;
           const transform = getWaveTransform(index);
           // Centered: first left wave at x=0
-          const waveSpacing = 100;
-          const waveX = -90 + index * waveSpacing;
+          const waveSpacing = 70;
+          const waveX = -50 + index * waveSpacing;
           const hoveredWidth = 90;
           const hoveredHeight = 110;
-          const rectWidth = isHovered ? hoveredWidth : 60;
+          const rectWidth = isHovered ? hoveredWidth : 30;
           const rectHeight = isHovered ? hoveredHeight : animatedHeight;
           const waveY = 250 - (isHovered ? hoveredHeight : animatedHeight);
           return (
@@ -117,18 +117,18 @@ export function WaveShowcase({ images, centerImage }: WaveShowcaseProps) {
         })}
 
         {/* Right 5 waves */}
-        {Array.from({ length: 4 }).map((_, i) => {
+        {Array.from({ length: 5 }).map((_, i) => {
           const index = i + 5;
           const baseHeight = 80 + Math.sin(index * 0.6) * 50;
           const animatedHeight = baseHeight + Math.sin((animationPhase + index * 10) * 0.1) * 20;
           const isHovered = false;
           const transform = getWaveTransform(index);
           // Centered: first right wave at x=740 (460+280)
-          const waveSpacing = 100;
+          const waveSpacing = 70;
           const waveX = 950 + i * waveSpacing;
           const hoveredWidth = 90;
           const hoveredHeight = 110;
-          const rectWidth = isHovered ? hoveredWidth : 60;
+          const rectWidth = isHovered ? hoveredWidth : 30;
           const rectHeight = isHovered ? hoveredHeight : animatedHeight;
           const waveY = 250 - (isHovered ? hoveredHeight : animatedHeight);
           return (
