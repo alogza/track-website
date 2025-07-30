@@ -1,6 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { verifyToken } from "@/lib/auth"
-import { uploadToCloudinary } from "@/lib/cloudinary"
+import { uploadToCloudinary } from "../../../../lib/cloudinary"
+
 
 export async function POST(request: NextRequest) {
   try {
