@@ -113,6 +113,16 @@ export default function PortfolioPage() {
     },
   ];
 
+  const getEmbedUrl = (url: string) => {
+    const match = url.match(
+      /(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/
+    );
+    if (match && match[1]) {
+      return `https://www.youtube.com/embed/${match[1]}`;
+    }
+    return null;
+  };
+
   const filteredProjects =
     selectedCategory === "all"
       ? projects
@@ -134,7 +144,7 @@ export default function PortfolioPage() {
       <HeroSections
         title={t.portfolio.hero.title}
         description={t.portfolio.hero.subtitle}
-        image="/photo20.jpg" // replace with your actual image path
+        image="/salah1.jpeg" // replace with your actual image path
       />
 
       {/* Portfolio Section */}
@@ -353,32 +363,28 @@ export default function PortfolioPage() {
               )}
 
               {/* 2. Videos Section (YouTube) */}
-              {selectedProject.youtubeUrl && (
-                <div className="mb-8 flex flex-col items-center">
-                  <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
-                    <Film size={20} className="text-[#28bca2]" />
-                    Videos
-                  </h3>
-                  <div className="w-full max-w-2xl bg-white rounded-2xl shadow-xl border border-gray-100 p-4 flex justify-center">
-                    <div className="w-full aspect-video">
-                      <iframe
-                        width="100%"
-                        height="100%"
-                        src={selectedProject.youtubeUrl.replace(
-                          "watch?v=",
-                          "embed/"
-                        )}
-                        title="YouTube video player"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowFullScreen
-                        className="rounded-xl w-full h-full min-h-[200px] max-h-[420px]"
-                        style={{ background: "#000" }}
-                      ></iframe>
+              {selectedProject.youtubeUrl &&
+                getEmbedUrl(selectedProject.youtubeUrl) && (
+                  <div className="mb-8 flex flex-col items-center">
+                    <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
+                      <Film size={20} className="text-[#28bca2]" />
+                      Videos
+                    </h3>
+                    <div className="w-full max-w-2xl bg-white rounded-2xl shadow-xl border border-gray-100 p-4 flex justify-center">
+                      <div className="w-full aspect-video">
+                        <iframe
+                          src={getEmbedUrl(selectedProject.youtubeUrl)!}
+                          title="YouTube video player"
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowFullScreen
+                          className="rounded-xl w-full h-full min-h-[200px] max-h-[420px]"
+                          style={{ background: "#000" }}
+                        ></iframe>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
+                )}
 
               {/* 3. Audios Section */}
               {selectedProject.images.some((img) =>
